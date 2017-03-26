@@ -1,5 +1,8 @@
 Project KTLT 20162 Nhóm 19
 
+*****NOTE*****LƯU Ý*****
+Do không có chỗ ghi tên phòng/ban nên mỗi công ty chỉ có 1 phòng hoặc 1 ban. Vì nếu nhiều sẽ không biết nhân viên thuộc phòng/ban nào.
+
 Đề tài 1
 Quản lý nhân viên của một công ty:
 
