@@ -1,0 +1,11 @@
+Họ
+Tên
+Đơn vị
+Chức vụ
+Ngày tháng năm sinh
+Quê quán
+Địa chỉ
+Email
+Số điện thoại
+Ngày bắt đầu làm việc
+Ngày làm việc, thời gian đến, thời gian về
