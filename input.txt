@@ -1,11 +1,11 @@
 NV1
-Trần Văn
+Tran Van
 A
 BKCorporation
-Chủ tịch
+Chu tich
 10/01/1980
-Hà Nội
-Số 1, Tạ Quang Bửu
+Ha Noi
+So 1, Ta Quang Buu
 tranvana@gmail.com
 0123456789
 22/02/2016
@@ -17,13 +17,13 @@ tranvana@gmail.com
 27/02/2016,7:40,18:00
 28/02/2016,7:39,18:02
 NV2
-Nguyền Văn
+Nguyen Van
 B
 BKCorporation
-Phó chủ tịch
+Pho chu tich
 2/2/1976
-Hà Nội
-Số 2, Đường Láng
+Ha Noi
+So 2, Duong Lang
 nguyenvanb@gmail.com
 1239848975
 22/02/2016
@@ -35,13 +35,13 @@ nguyenvanb@gmail.com
 27/02/2016,7:43,18:00
 28/02/2016,7:37,18:00
 NV3
-Trần Trung
-Dũng
+Tran Trung
+Dung
 BKEntertainment
-Giám đốc
+Giam doc
 7/2/1979
-Nghệ An
-Số 3, Quang Trung
+Nghe An
+So 3, Quang Trung
 dungtrantrung@gmail.com
 1239848975
 22/02/2016
@@ -53,13 +53,13 @@ dungtrantrung@gmail.com
 27/02/2016,7:43,18:00
 28/02/2016,7:37,18:00
 NV4
-Trần Hải
-Hòa
+Tran Hai
+Hoa
 BKEntertainment
-Phó giám đốc
+Pho giam doc
 4/6/1972
-Hà Tĩnh
-Số 15, Hai Bà Trưng
+Ha Tinh
+So 15, Hai Ba Trung
 hoatranhai@gmail.com
 1239848975
 22/02/2016
@@ -71,13 +71,13 @@ hoatranhai@gmail.com
 27/02/2016,7:43,18:00
 28/02/2016,7:37,18:00
 NV5
-Trần Minh
-Hoàng
+Tran Minh
+Hoang
 BKEntertainment
-Trưởng phòng
+Truong phong
 4/6/1972
-Hà Tĩnh
-Số 19, Hai Bà Trưng
+Ha Tinh
+So 19, Hai Ba Trung
 tranminhhoang@gmail.com
 1239848975
 22/02/2016
@@ -89,13 +89,13 @@ tranminhhoang@gmail.com
 27/02/2016,7:43,18:00
 28/02/2016,7:37,18:00
 NV6
-Lê Hiền
-Lương
+Le Hien
+Luong
 BKEntertainment
-Phó phòng
+Pho phong
 7/9/1972
-Hà Nam
-Số 22, Lương Định Của
+Ha Nam
+So 22, Luong Dinh Cua
 lehienluong@gmail.com
 1239848975
 22/02/2016
@@ -107,13 +107,13 @@ lehienluong@gmail.com
 27/02/2016,7:43,18:00
 28/02/2016,7:37,18:00
 NV7
-Lê Trung
-Hiếu
+Le Trung
+Hieu
 BKEntertainment
-Nhân viên
+Nhan vien
 7/9/1972
-Hà Nội
-Số 22, Huỳnh Thúc Kháng
+Ha Noi
+So 22, Huynh Thuc Khang
 hieult@gmail.com
 1239848975
 22/02/2016
@@ -125,13 +125,13 @@ hieult@gmail.com
 27/02/2016,7:43,18:00
 28/02/2016,7:37,18:00
 NV8
-Lê Lan
+Le Lan
 Anh
 BKEntertainment
-Nhân viên
+Nhan vien
 7/9/1978
-Hà Nội
-Số 22, Trương Định
+Ha Noi
+So 22, Truong Dinh
 anh11@gmail.com
 1239848975
 22/02/2016
