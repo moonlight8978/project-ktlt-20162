@@ -1,4 +1,4 @@
-Project KTLT 20162 Nhóm 19
+﻿Project KTLT 20162 Nhóm 19
 
 ************************
 *****NOTE*****LƯU Ý*****
@@ -8,7 +8,7 @@ Do không có chỗ ghi tên phòng/ban nên mỗi công ty chỉ có 1 phòng h
 
 
 
-
+Test
 Đề tài 1
 Quản lý nhân viên của một công ty:
 
