@@ -1,0 +1,19 @@
+struct mẫu nhé các con hàng 
+ struct Employee{
+    	char id[4];
+    	char ho[30];
+		char ten[10];
+		char don_vi[30];
+		char chuc_vu[20];
+		char birth[11];
+		char que[20];
+		char address[50];
+		char email[50];
+		char sdt[12];
+		char day_start[11];
+		struct Work{
+			char day[11];
+			char time_start[6];
+			char time_finish[6];
+		} Work; 
+	}; 
