@@ -1,19 +1,28 @@
-struct mẫu nhé các con hàng 
- struct Employee{
-    	char id[4];
-    	char ho[30];
-		char ten[10];
-		char don_vi[30];
-		char chuc_vu[20];
-		char birth[11];
-		char que[20];
-		char address[50];
-		char email[50];
-		char sdt[12];
-		char day_start[11];
-		struct Work{
-			char day[11];
-			char time_start[6];
-			char time_finish[6];
-		} Work; 
-	}; 
+﻿struct mẫu nhé các con hàng 
+struct Date {
+	int ngay;
+	int thang;
+	int nam;
+};
+
+struct Time {
+	int gio;
+	int phut;
+};
+
+struct Employee {
+	char 	manv[4];		// ma nhan vien
+	char 	ho[30];
+	char 	ten[10];
+	char	congty[30];
+	char	chucvu[30];
+	Date	sinhnhat;
+	char 	que[20];		// que quan
+	char	diachi[50];
+	char	email[50];
+	int 	sdt;		// so dien thoai
+	Date	ngaybd;		// ngay bat dau
+	Date*   ngaylv;		// ngay lam viec
+	Time*	gioden;		// gio den^'
+	Time* 	giove;		// gio ve^`
+};
