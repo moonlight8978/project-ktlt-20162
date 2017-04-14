@@ -39,13 +39,13 @@ struct Company {
 
     //  push 1 nhan vien vao cong ty
 void pushEmployee(vector<Company*> &dsct, Employee* emp) {	//  dsct: danh sach cong ty
-	if (dsct.empty()) {
-		Company* co = new Company;
-		strcpy(co->label, emp->congty);
-		co->dsnv.push_back(emp);
-		dsct.push_back(co);
-		return;
-	}
+    if (dsct.empty()) {
+        Company* co = new Company;
+        strcpy(co->label, emp->congty);
+        co->dsnv.push_back(emp);
+        dsct.push_back(co);
+        return;
+    }
     vector<Company*>::iterator co = dsct.begin();
     bool found = false;
     for (
