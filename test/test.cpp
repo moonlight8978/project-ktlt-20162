@@ -32,8 +32,7 @@ struct Employee {
 };
 
 
-stack<Employee*> read(FILE* file) {
-	stack<Employee*> stack;
+void read(FILE* file, stack<Employee*>& stack) {
 	Employee* emp = new Employee;
 	char line[100];
 	int i;
@@ -74,16 +73,15 @@ stack<Employee*> read(FILE* file) {
 			<< emp->giove[0].phut    << " "
 			<< emp->sdt;*/
 	stack.push(emp);
-	return stack;
 }
 
 int main() {
-	const char *filePath = "E:/Bach/workspace/GitHub/project-ktlt-20162/test/input.txt";
+	const char *filePath = "E:/workspace/GitHub/project-ktlt-20162/test/input.txt";
 	FILE *file;
     file = fopen(filePath, "r");
     stack<Employee*> stack;
     
-	stack = read(file);
+	read(file, stack);
 	cout << stack.top()->ten;
 	
 	return 0;
