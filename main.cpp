@@ -5,31 +5,31 @@
 using namespace std;
 
 struct Date {
-	int ngay;
-	int thang;
-	int nam;
+    int ngay;
+    int thang;
+    int nam;
 };
 
 struct Time {
-	int gio;
-	int phut;
+    int gio;
+    int phut;
 };
 
 struct Employee {
-	char manv[4];	    //  ma nhan vien
-	char ho[30];
-	char ten[10];
-	char congty[30];
-	char chucvu[30];
-	Date sinhnhat;
-	char que[20];	    //  que quan
-	char diachi[50];
-	char email[50];
-	char sdt[50];	    //  so dien thoai
-	Date ngaybd;		    //  ngay bat dau
-	Date ngaylv[7];		//  ngay lam viec
-	Time gioden[7];		//  gio den^'
-	Time giove[7];		//  gio ve^`
+    char manv[4];	    //  ma nhan vien
+    char ho[30];
+    char ten[10];
+    char congty[30];
+    char chucvu[30];
+    Date sinhnhat;
+    char que[20];	    //  que quan
+    char diachi[50];
+    char email[50];
+    char sdt[50];	    //  so dien thoai
+    Date ngaybd;		    //  ngay bat dau
+    Date ngaylv[7];		//  ngay lam viec
+    Time gioden[7];		//  gio den^'
+    Time giove[7];		//  gio ve^`
 };
 
 struct Company {
@@ -104,59 +104,59 @@ void fixNewLine(Employee* emp) {
         Push vao cong ty */
 void read(FILE* file, vector<Company*> &dsct) {
     while (!feof(file)) {
-		Employee* emp = new Employee;
-		char line[100];   //  luu ket qua fgets
-		int i;
-		//  tien hanh doc 1 nhan vien
-		fgets(emp->manv, 100, file);
-		fgets(emp->ho, 100, file);
-		fgets(emp->ten, 100, file);
-		fgets(emp->congty, 100, file);
-		fgets(emp->chucvu, 100, file);
-		fgets(line, 100, file);
-		sscanf(
-			line, "%d/%d/%d\n", 
-			&emp->sinhnhat.ngay, &emp->sinhnhat.thang, &emp->sinhnhat.nam
-		);
-		fgets(emp->que, 100, file);
-		fgets(emp->diachi, 100, file);
-		fgets(emp->email, 100, file);
-		fgets(emp->sdt, 100, file);
-		fgets(line, 100, file);
-		sscanf(
-			line, "%d/%d/%d\n", 
-			&emp->ngaybd.ngay, &emp->ngaybd.thang, &emp->ngaybd.nam
-		);
-		for (i = 0; i < 7; i += 1) {
-		    fgets(line, 100, file);
-		    sscanf(
-			    line, "%d/%d/%d,%d:%d,%d:%d\n", 
-			    &emp->ngaylv[i].ngay, &emp->ngaylv[i].thang, &emp->ngaylv[i].nam,
-			    &emp->gioden[i].gio, &emp->gioden[i].phut,
-			    &emp->giove[i].gio, &emp->giove[i].phut
-	        );
-	    }
-	    fixNewLine(emp);
-	    if (strcmp(emp->ten, "Sau") == 0)
-	       cout << emp->ho << " " << emp->ten << endl; // in Ly Mac Sau
-	    /*  doc xong 1 nhan vien
-	        push vao cong ty */
+        Employee* emp = new Employee;
+        char line[100];   //  luu ket qua fgets
+        int i;
+        //  tien hanh doc 1 nhan vien
+        fgets(emp->manv, 100, file);
+        fgets(emp->ho, 100, file);
+        fgets(emp->ten, 100, file);
+        fgets(emp->congty, 100, file);
+        fgets(emp->chucvu, 100, file);
+        fgets(line, 100, file);
+        sscanf(
+            line, "%d/%d/%d\n", 
+            &emp->sinhnhat.ngay, &emp->sinhnhat.thang, &emp->sinhnhat.nam
+        );
+        fgets(emp->que, 100, file);
+        fgets(emp->diachi, 100, file);
+        fgets(emp->email, 100, file);
+        fgets(emp->sdt, 100, file);
+        fgets(line, 100, file);
+        sscanf(
+            line, "%d/%d/%d\n", 
+            &emp->ngaybd.ngay, &emp->ngaybd.thang, &emp->ngaybd.nam
+        );
+        for (i = 0; i < 7; i += 1) {
+            fgets(line, 100, file);
+            sscanf(
+                line, "%d/%d/%d,%d:%d,%d:%d\n", 
+                &emp->ngaylv[i].ngay, &emp->ngaylv[i].thang, &emp->ngaylv[i].nam,
+                &emp->gioden[i].gio, &emp->gioden[i].phut,
+                &emp->giove[i].gio, &emp->giove[i].phut
+            );
+        }
+        fixNewLine(emp);
+        if (strcmp(emp->ten, "Sau") == 0)
+            cout << emp->ho << " " << emp->ten << endl; // in Ly Mac Sau
+            /*  doc xong 1 nhan vien
+                push vao cong ty */
         pushEmployee(dsct, emp);
     }
 }
 
 int main() {
-	const char *filePath = "E:/workspace/GitHub/project-ktlt-20162/input.txt";
-	FILE *file;
+    const char *filePath = "E:/workspace/GitHub/project-ktlt-20162/input.txt";
+    FILE *file;
     file = fopen(filePath, "r");
     vector<Company*> dsct;
-    
-	read(file, dsct);
-    
+
+    read(file, dsct);
+
     cout << dsct.size() << endl; // 3 cong ty
-    cout << dsct[0]->dsnv.size() << endl; // 2 nhan vien
-    cout << dsct[1]->dsnv.size() << endl; // 8 nhan vien
-    cout << dsct[2]->dsnv.size() << endl; // 3 nhan vien
-	
-	return 0;
+    cout << dsct[0]->label << ": " << dsct[0]->dsnv.size() << " nhan vien" << endl; // 2 nhan vien
+    cout << dsct[1]->label << ": " << dsct[1]->dsnv.size() << " nhan vien" << endl; // 8 nhan vien
+    cout << dsct[2]->label << ": " << dsct[2]->dsnv.size() << " nhan vien" << endl; // 3 nhan vien
+
+    return 0;
 }
