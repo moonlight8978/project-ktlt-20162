@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -25,22 +26,16 @@ struct Employee {
 	char	email[50];
 	char 	sdt[50];	    // so dien thoai
 	Date	ngaybd;		    // ngay bat dau
-	Date*   ngaylv;		    // ngay lam viec
-	Time*	gioden;		    // gio den^'
-	Time* 	giove;		    // gio ve^`
+	Date    ngaylv[7];		// ngay lam viec
+	Time	gioden[7];		// gio den^'
+	Time 	giove[7];		// gio ve^`
 };
 
-Employee* createEmployee() {
-	Employee* emp = new Employee;
-	emp->ngaylv = new Date[7];
-	emp->gioden = new Time[7];
-	emp->giove = new Time[7];
-	return emp;
-}
 
-void read(FILE* file) {
-	Employee* emp = createEmployee();
-	char* line = new char[100];
+stack<Employee*> read(FILE* file) {
+	stack<Employee*> stack;
+	Employee* emp = new Employee;
+	char line[100];
 	int i;
 	fgets(emp->manv, 100, file);
 	fgets(emp->ho, 100, file);
@@ -70,22 +65,26 @@ void read(FILE* file) {
 		    &emp->giove[i].gio, &emp->giove[i].phut
         );
     }
-	cout 	<< emp->ngaylv[0].ngay   << "/"
+	/*cout 	<< emp->ngaylv[0].ngay   << "/"
 			<< emp->ngaylv[0].thang  << "/"
 			<< emp->ngaylv[0].nam    << " "
 			<< emp->gioden[0].gio    << ":"
 			<< emp->gioden[0].phut   << " "
-			<< emp->giove[0].gio    << ":"
-			<< emp->giove[0].phut   << " "
-			<< emp->sdt;
+			<< emp->giove[0].gio     << ":"
+			<< emp->giove[0].phut    << " "
+			<< emp->sdt;*/
+	stack.push(emp);
+	return stack;
 }
 
 int main() {
-	const char *filePath = "E:/workspace/Cxxxxx/test-input/input.txt";
+	const char *filePath = "E:/Bach/workspace/GitHub/project-ktlt-20162/test/input.txt";
 	FILE *file;
     file = fopen(filePath, "r");
+    stack<Employee*> stack;
     
-	read(file);
+	stack = read(file);
+	cout << stack.top()->ten;
 	
 	return 0;
 }
