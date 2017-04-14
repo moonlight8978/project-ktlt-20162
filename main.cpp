@@ -62,17 +62,17 @@ void pushEmployee(vector<Company*> &dsct, Employee* emp) {	//  dsct: danh sach c
     }
     if (!found) {
         Company* co = new Company;
-		strcpy(co->label, emp->congty);
-		co->dsnv.push_back(emp);
-		dsct.push_back(co);
+        strcpy(co->label, emp->congty);
+        co->dsnv.push_back(emp);
+        dsct.push_back(co);
     }
 }
 
     // Fix loi fgets chua \n
 void fixNewLine(Employee* emp) {
-	int size_ten  = strlen(emp->ten) - 1;
-	if (*emp->ten && emp->ten[size_ten] == '\n') 
-    	emp->ten[size_ten] = '\0';
+    int size_ten  = strlen(emp->ten) - 1;
+    if (*emp->ten && emp->ten[size_ten] == '\n') 
+        emp->ten[size_ten] = '\0';
     int size_ho  = strlen(emp->ho) - 1;
 	if (*emp->ho && emp->ho[size_ho] == '\n') 
     	emp->ho[size_ho] = '\0';
