@@ -74,28 +74,28 @@ void fixNewLine(Employee* emp) {
     if (*emp->ten && emp->ten[size_ten] == '\n') 
         emp->ten[size_ten] = '\0';
     int size_ho  = strlen(emp->ho) - 1;
-	if (*emp->ho && emp->ho[size_ho] == '\n') 
+    if (*emp->ho && emp->ho[size_ho] == '\n') 
     	emp->ho[size_ho] = '\0';
     int size_manv  = strlen(emp->manv) - 1;
-	if (*emp->manv && emp->manv[size_manv] == '\n') 
+    if (*emp->manv && emp->manv[size_manv] == '\n') 
     	emp->manv[size_manv] = '\0';
     int size_congty  = strlen(emp->congty) - 1;
-	if (*emp->congty && emp->congty[size_congty] == '\n') 
+    if (*emp->congty && emp->congty[size_congty] == '\n') 
     	emp->congty[size_congty] = '\0';
     int size_chucvu  = strlen(emp->chucvu) - 1;
-	if (*emp->chucvu && emp->chucvu[size_chucvu] == '\n') 
+    if (*emp->chucvu && emp->chucvu[size_chucvu] == '\n') 
     	emp->chucvu[size_chucvu] = '\0';
     int size_que  = strlen(emp->que) - 1;
-	if (*emp->que && emp->que[size_que] == '\n') 
+    if (*emp->que && emp->que[size_que] == '\n') 
     	emp->que[size_que] = '\0';
     int size_diachi  = strlen(emp->diachi) - 1;
-	if (*emp->diachi && emp->diachi[size_diachi] == '\n') 
+    if (*emp->diachi && emp->diachi[size_diachi] == '\n') 
     	emp->diachi[size_diachi] = '\0';
     int size_email  = strlen(emp->email) - 1;
-	if (*emp->email && emp->email[size_email] == '\n') 
+    if (*emp->email && emp->email[size_email] == '\n') 
     	emp->email[size_email] = '\0';
     int size_sdt  = strlen(emp->sdt) - 1;
-	if (*emp->sdt && emp->sdt[size_sdt] == '\n') 
+    if (*emp->sdt && emp->sdt[size_sdt] == '\n') 
     	emp->sdt[size_sdt] = '\0';
 }
 
