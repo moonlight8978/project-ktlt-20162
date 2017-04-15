@@ -105,7 +105,7 @@ void fixNewLine(Employee* emp) {
 
 /*  Doc file
     Luu thong tin nhan vien vao struct Employee
-    Push vao cong ty */
+    Push vao Cong ty */
 void read(FILE* file, vector<Company*> &dsct) {
     while (!feof(file)) {
         Employee* emp = new Employee;
