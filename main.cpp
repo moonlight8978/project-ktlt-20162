@@ -33,11 +33,16 @@ struct Employee {
 };
 
 struct Company {
-    char            label[30];  //  ten cong ty
+    char                label[30];  //  ten cong ty
     vector<Employee*>	dsnv;       //  danh sach nhan vien
 };
 
-    //  push 1 nhan vien vao cong ty
+    //  Ham push 1 nhan vien vao cong ty
+    /*  kiem tra dsct rong
+        neu rong => tao cong ty, them nhan vien vao
+        ko rong => duyet cong ty 
+        => found => them nhan vien
+        => not found => tao cong ty, them nhan vien */
 void pushEmployee(vector<Company*> &dsct, Employee* emp) {	//  dsct: danh sach cong ty
     if (dsct.empty()) {
         Company* co = new Company;
@@ -46,21 +51,19 @@ void pushEmployee(vector<Company*> &dsct, Employee* emp) {	//  dsct: danh sach c
         dsct.push_back(co);
         return;
     }
-    vector<Company*>::iterator co = dsct.begin();
+    int i = 0;
+    int nosOfCo = dsct.size();
     bool found = false;
-    for (
-        vector<Company*>::iterator co = dsct.begin();
-        co != dsct.end();
-        co ++ 
-    ) {
-        if(strcmp((*co)->label, emp->congty) == 0) {
+    for (i = 0; i < nosOfCo; i += 1) {
+        if(strcmp(dsct[i]->label, emp->congty) == 0) {
             found = true;
-            (*co)->dsnv.push_back(emp);
+            dsct[i]->dsnv.push_back(emp);
             break;
-            return;
         }
     }
-    if (!found) {
+    if (found) {
+        return;
+    } else {
         Company* co = new Company;
         strcpy(co->label, emp->congty);
         co->dsnv.push_back(emp);
@@ -68,7 +71,7 @@ void pushEmployee(vector<Company*> &dsct, Employee* emp) {	//  dsct: danh sach c
     }
 }
 
-    // Fix loi fgets chua \n
+    // Fix loi fgets chua' \n
 void fixNewLine(Employee* emp) {
     int size_ten  = strlen(emp->ten) - 1;
     if (*emp->ten && emp->ten[size_ten] == '\n') 
@@ -137,26 +140,92 @@ void read(FILE* file, vector<Company*> &dsct) {
             );
         }
         fixNewLine(emp);
-        if (strcmp(emp->ten, "Sau") == 0)
-            cout << emp->ho << " " << emp->ten << endl; // in Ly Mac Sau
             /*  doc xong 1 nhan vien
                 push vao cong ty */
         pushEmployee(dsct, emp);
     }
 }
 
+    // cau 1
+void showBKCorp(vector<Company*> &dsct) {
+    int i, j;   //  counting variables
+    int nosOfCo = dsct.size();
+    for (i = 0; i < nosOfCo; i += 1) {
+        cout << "-----"
+             << dsct[i]->label 
+             << "-----" << endl;
+        vector<Employee*>* dsnv = &dsct[i]->dsnv;
+        int nosOfEmp = (*dsnv).size();
+        for (j = 0; j < nosOfEmp; j += 1) {
+            if ((strcmp((*dsnv)[j]->chucvu, "Chu tich") == 0) ||
+                (strcmp((*dsnv)[j]->chucvu, "Pho chu tich") == 0) ||
+                (strcmp((*dsnv)[j]->chucvu, "Giam doc") == 0) ||
+                (strcmp((*dsnv)[j]->chucvu, "Pho giam doc") == 0) ||
+                (strcmp((*dsnv)[j]->chucvu, "Truong phong") == 0) ||
+                (strcmp((*dsnv)[j]->chucvu, "Pho phong") == 0)) {
+                cout << (*dsnv)[j]->chucvu << ": " 
+                     << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl;
+            }
+        }
+        cout << "Tong so nhan vien: "
+             << nosOfEmp << endl;
+    }
+}
+
 int main() {
+    cout << "Chuong trinh quan li nhan vien:" << endl;
+    cout << "Dang doc file input.txt... ";
     const char *filePath = "E:/workspace/GitHub/project-ktlt-20162/input.txt";
     FILE *file;
     file = fopen(filePath, "r");
     vector<Company*> dsct;
-
+    bool running = true;
+    int choice;
     read(file, dsct);
+    cout << "Done." << endl;
 
-    cout << dsct.size() << endl; // 3 cong ty
-    cout << dsct[0]->label << ": " << dsct[0]->dsnv.size() << " nhan vien" << endl; // 2 nhan vien
-    cout << dsct[1]->label << ": " << dsct[1]->dsnv.size() << " nhan vien" << endl; // 8 nhan vien
-    cout << dsct[2]->label << ": " << dsct[2]->dsnv.size() << " nhan vien" << endl; // 3 nhan vien
+    while (running) {
+        cout << 
+        endl << "Hay lua chon cac thao tac:" <<
+        endl << "1. Hien thi cac thong tin co ban ve BKCorporation." <<
+        endl << "2. Tim kiem nhan vien bang ho ten." <<
+        endl << "3. Hien thi tinh trang lam viec cua nhan vien." <<
+        endl << "4. Hien thi thong tin cua mot don vi." <<
+        endl << "5. Them nhan vien moi." <<
+        endl << "6. Cap nhat thong tin nhan vien." <<
+        endl << "7. Thoat chuong trinh." << endl <<
+        endl << "Nhap thao tac ban muon thuc hien: ";
+        
+        cin >> choice;
+        cout << endl;
+        
+        switch (choice) {
+            case 1: {
+                showBKCorp(dsct);
+                break;
+            }
+            case 2: {
+                break;
+            }
+            case 3: {
+                break;
+            }
+            case 4: {
+                break;
+            }
+            case 5: {
+                break;
+            }
+            case 6: {
+                break;
+            }
+            case 7: {
+                running = false;
+                cout << "Nhan phim bat ki de ket thuc.";
+                break;
+            }
+        }
+    }
 
     return 0;
 }
