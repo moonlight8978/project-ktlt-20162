@@ -27,7 +27,7 @@ struct Employee {
     char diachi[50];
     char email[50];
     char sdt[50];	    //  so dien thoai
-    Date ngaybd;		    //  ngay bat dau
+    Date ngaybd;		//  ngay bat dau
     Date ngaylv[7];		//  ngay lam viec
     Time gioden[7];		//  gio den^'
     Time giove[7];		//  gio ve^`
