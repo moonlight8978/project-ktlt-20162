@@ -199,6 +199,7 @@ void search_stuff(vector<Company*>&dsct){
     fflush(stdin);
     gets(firstName);
     strcat(Name,firstName);
+    strcat(Name," ");
     cout << "Nhap vao ten  nhan vien: ";
     gets(lastName);
     strcat(Name,lastName);
@@ -208,10 +209,10 @@ void search_stuff(vector<Company*>&dsct){
     	vector<Employee*>* dsnv = &dsct[i]->dsnv;
     	int nosOfEmp = (*dsnv).size();
                for(j=0;j<nosOfEmp;j++){
-                  if(strcmp( strcat((*dsnv)[j]->ho,(*dsnv)[j]->ten),Name)==0){
+                  if(strcmp( strcat(strcat((*dsnv)[j]->ho," "),(*dsnv)[j]->ten),Name)==0){
 	      
                      cout << (*dsnv)[j]->manv << endl
-                          << (*dsnv)[j]->ho << " "<<  (*dsnv)[j]->ten <<endl
+                          << (*dsnv)[j]->ho   <<endl
                           << (*dsnv)[j]->chucvu<< endl
                           << (*dsnv)[j]->sinhnhat.ngay << "/" << (*dsnv)[j]->sinhnhat.thang << "/" << (*dsnv)[j]->sinhnhat.nam << endl
                           << (*dsnv)[j]->que << endl
@@ -219,12 +220,13 @@ void search_stuff(vector<Company*>&dsct){
                           << (*dsnv)[j]->email <<endl
                           << (*dsnv)[j]->sdt << endl
                           << (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam <<endl;
-                   }
-                  else 
                       d=1;
+                   }
+                 
         }
+        
     }
-   if(d==1) cout<<"Khong thay ten nhan vien nao la:"<<Name<<endl;
+     if(d==0) cout<<"Khong thay ten nhan vien nao la:"<<Name<<endl;
    
 }
    
