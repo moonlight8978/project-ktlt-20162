@@ -225,6 +225,56 @@ void print_donvi(vector<Company*> &dsct)
         }
     }
 }
+//cau 5
+
+void addEmp(vector<Company*> &dsct){
+	Employee* emp = new Employee;
+    cout<<endl<<"*********Them nhan vien moi ahihi !*************"<<endl;
+    char manv[10];
+    cout << "Xin moi nhap thong tin cua nhan vien moi"<<endl;
+	do{
+       cout<<"Xin moi nhap ma nhan vien:";
+       cin>>manv;
+       if(findEmployee(manv,dsct)!=NULL){
+           cout<<"Ma nhan vien nay da TON TAI vui long thu lai"<<endl<<endl;
+       }
+    }while(findEmployee(manv,dsct)!=NULL);
+	pushEmployee(dsct,emp);
+		cout<<"Ho:";
+        cin>>emp->ho;
+		cout<<"Ten:";
+        cin>>emp->ten;
+		cout<<"Don vi:";
+        cin>>emp->congty;
+		cout<<"Chuc vu: ";
+        cin>>emp->chucvu;
+        cout<<"Ngay thang nam sinh:  "<<endl;
+		cout<<"Ngay:";
+        cin>>emp->sinhnhat.ngay;
+        cout<<"Thang:";
+        cin>>emp->sinhnhat.thang;
+        cout<<"Nam:";
+        cin>>emp->sinhnhat.nam;        
+		cout<<"Que Quan: ";
+		cin>>emp->que;
+		cout<<"Dia chi: ";
+        cin>>emp->ten;
+		cout<<"Email: ";
+        cin>>emp->email;
+		cout<<"So dien thoai: ";
+        cin>>emp->sdt;         
+	    cout<<"---------------------------------------------"<<endl;
+	    cout<<"Nhan vien duoi day da duoc Them vao he thong!!!"<<endl;
+	    cout<<"Ten: "<<emp->ten<<endl;
+	    cout<<"Ho: "<<emp->ho<<endl;
+	    cout<<"Cong ty: "<<emp->congty<<endl;
+	    cout<<"Chuc vu: "<<emp->chucvu<<endl;
+	    cout<<"Ngay sinh:"<<emp->sinhnhat.ngay<<"/"<<emp->sinhnhat.thang<<"/"<<emp->sinhnhat.nam<<endl;
+	    cout<<"Que Quan: "<<emp->que<<endl;
+	    cout<<"Dia chi: "<<emp->diachi<<endl;
+	    cout<<"Email: "<<emp->email<<endl;
+	    cout<<"So dt: "<<emp->sdt<<endl;
+	}
 
 //cau 6
 void updateEmp(vector<Company*> &dsct){
@@ -318,7 +368,7 @@ void updateEmp(vector<Company*> &dsct){
 int main() {
     cout << "Chuong trinh quan li nhan vien:" << endl;
     cout << "Dang doc file input.txt... ";
-    const char *filePath = "/home/huuthang/Desktop/info.txt";
+    const char *filePath = "input.txt";
     FILE *file;
     file = fopen(filePath, "r");
     bool running=true;
@@ -358,7 +408,8 @@ int main() {
                 break;
             }
             case 5: {
-                break;
+               addEmp(dsct);
+			    break;
             }
             case 6: {
                 updateEmp(dsct);
