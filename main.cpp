@@ -3,6 +3,7 @@
 #include <string.h>
 #include<stdio.h>
 #include <istream>
+#include <stdint.h>
 using namespace std;
 
 struct Date {
@@ -188,7 +189,45 @@ void showBKCorp(vector<Company*> &dsct) {
              << nosOfEmp << endl;
     }
 }
-
+//cau2
+void search_stuff(vector<Company*>&dsct){
+   
+    char firstName[20];
+    char lastName[10];
+    char Name[50]="";
+    cout << "Nhap vao ho  nhan vien: ";
+    fflush(stdin);
+    gets(firstName);
+    strcat(Name,firstName);
+    cout << "Nhap vao ten  nhan vien: ";
+    gets(lastName);
+    strcat(Name,lastName);
+    int i,j,d=0;
+    int nosOfCo =dsct.size();
+    for (i = 0; i < nosOfCo; i += 1) {
+    	vector<Employee*>* dsnv = &dsct[i]->dsnv;
+    	int nosOfEmp = (*dsnv).size();
+               for(j=0;j<nosOfEmp;j++){
+                  if(strcmp( strcat((*dsnv)[j]->ho,(*dsnv)[j]->ten),Name)==0){
+	      
+                     cout << (*dsnv)[j]->manv << endl
+                          << (*dsnv)[j]->ho << " "<<  (*dsnv)[j]->ten <<endl
+                          << (*dsnv)[j]->chucvu<< endl
+                          << (*dsnv)[j]->sinhnhat.ngay << "/" << (*dsnv)[j]->sinhnhat.thang << "/" << (*dsnv)[j]->sinhnhat.nam << endl
+                          << (*dsnv)[j]->que << endl
+                          << (*dsnv)[j]->diachi << endl
+                          << (*dsnv)[j]->email <<endl
+                          << (*dsnv)[j]->sdt << endl
+                          << (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam <<endl;
+                   }
+                  else 
+                      d=1;
+        }
+    }
+   if(d==1) cout<<"Khong thay ten nhan vien nao la:"<<Name<<endl;
+   
+}
+   
 
 //  check t7, CN
 bool isWeekends(Date date) {
@@ -477,6 +516,7 @@ int main() {
                 break;
             }
             case 2: {
+                search_stuff(dsct);
                 break;
             }
             case 3: {
