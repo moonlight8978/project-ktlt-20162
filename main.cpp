@@ -189,6 +189,85 @@ void showBKCorp(vector<Company*> &dsct) {
     }
 }
 
+
+//  check t7, CN
+bool isWeekends(Date date) {
+    int thang = date.thang,
+        nam = date.nam,
+        day;
+    if (date.thang < 3) {
+        thang = date.thang + 12;
+        nam = date.nam - 1;
+    }
+    day = (date.ngay + 2 * thang + (3 * (thang + 1)) / 5 + nam + (nam / 4)) % 7;
+    if (day == 0 || day == 6)
+        return true;
+    return false;
+}
+
+//  check ngay le
+bool isHoliday(Date date) {
+    switch (date.thang) {
+        case 1: {
+            if (date.ngay == 1)
+                return true;
+        }
+        case 4: {
+            if (date.ngay == 30)
+                return true;
+        }
+        case 5: {
+            if (date.ngay == 1)
+                return true;
+        }
+        case 9: {
+            if (date.ngay == 2)
+                return true;
+        }
+        default: {
+            return false;
+        }
+    }
+}
+
+//  cau 3
+void showInfoEmp(vector<Company*> &dsct) {
+    char manv[10];
+    int i = 0;
+    cout << "Nhap vao ma nhan vien: ";
+    cin >> manv;
+    Employee* emp = findEmployee(manv, dsct);
+    if (emp == NULL) {
+        cout << "Khong co nhan vien ma so " << manv << endl;
+        return;
+    }
+    int giohut = 0,
+        phuthut = 0;
+    for (i = 0; i < 7; i += 1) {
+        Date date = emp->ngaylv[i];
+        if (isWeekends(date) || isHoliday(date))
+            continue;
+        int gioden = emp->gioden[i].gio,
+            phutden = emp->gioden[i].phut,
+            giove = emp->giove[i].gio,
+            phutve = emp->giove[i].phut;
+        if (gioden >= 8) {
+            giohut += gioden - 8;
+            phuthut += phutden;
+        }
+        if (giove < 18) {
+            giohut += 17 - giove;
+            phuthut += 60 - phutve;
+        }
+    }
+    giohut += (phuthut) / 60;
+    phuthut = phuthut % 60;
+    cout << giohut << ":" << phuthut << endl;
+    if (phuthut >= 30)
+        giohut += 1;
+    cout << "Lam tron: " << giohut << " gio" << endl;
+}
+
 //  cau 4
 void print_donvi(vector<Company*> &dsct)
 {
@@ -254,7 +333,7 @@ void addEmp(vector<Company*> &dsct){
         cout<<"Thang:";
         cin>>emp->sinhnhat.thang;
         cout<<"Nam:";
-        cin>>emp->sinhnhat.nam;        
+        cin>>emp->sinhnhat.nam;
 		cout<<"Que Quan: ";
 		cin>>emp->que;
 		cout<<"Dia chi: ";
@@ -262,7 +341,7 @@ void addEmp(vector<Company*> &dsct){
 		cout<<"Email: ";
         cin>>emp->email;
 		cout<<"So dien thoai: ";
-        cin>>emp->sdt;         
+        cin>>emp->sdt;
 	    cout<<"---------------------------------------------"<<endl;
 	    cout<<"Nhan vien duoi day da duoc Them vao he thong!!!"<<endl;
 	    cout<<"Ten: "<<emp->ten<<endl;
@@ -401,6 +480,7 @@ int main() {
                 break;
             }
             case 3: {
+                showInfoEmp(dsct);
                 break;
             }
             case 4: {
@@ -408,7 +488,7 @@ int main() {
                 break;
             }
             case 5: {
-               addEmp(dsct);
+                addEmp(dsct);
 			    break;
             }
             case 6: {
