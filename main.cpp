@@ -190,47 +190,7 @@ void showBKCorp(vector<Company*> &dsct) {
     }
 }
 //cau2
-void search_stuff(vector<Company*>&dsct){
-   void  search_By_firstName(vector<Company*>&dsct);
-   void  search_By_lastName(vector<Company*>&dsct);
-   void  search_By_fullName(vector<Company*>&dsct);
-    bool search=true;
-    int choice;
-    while(search) {
-        cout <<
-        endl << "Cac kieu tim kiem:" <<
-        endl << "1. Tim kiem theo ho." <<
-        endl << "2. Tim kiem theo ten." <<
-        endl << "3. Tim kiem theo ho & ten." <<
-        endl << "4: Thoat chuong trinh "<<endl<<
-        endl << "Nhap thao tac ban muon thuc hien: ";
 
-        cin >> choice;
-        cout << endl;
-
-        switch (choice) {
-            case 1: {
-                search_By_lastName(dsct);
-                break;
-            }
-            case 2: {
-                search_By_firstName(dsct);
-                break;
-            }
-            case 3: {
-                search_By_fullName(dsct);
-                break;
-            }
-            case 4: {
-                search = false;
-                cout << "Nhan phim bat ki de ket thuc.";
-                break;
-            }
-            
-    }
-
-   }
-  }
   // Tim kiem theo ten
   void search_By_firstName(vector<Company*>&dsct){
       char firstName[20];
@@ -310,54 +270,89 @@ void search_By_lastName(vector<Company*>&dsct){
   }
 // Tim kiem theo ho & ten
  void  search_By_fullName(vector<Company*>&dsct){
-    cout<<">>>TIM KIEM THEO HO & TEN<<<"<<endl;
-    char lastName[20];
-    char firstName[10];
-    char fullName[50]="";
+    cout<< ">>>TIM KIEM THEO HO & TEN<<<"<< endl< endl;
+    char firstName[20];
+    char lastName[10];
+    char fullName[50];
     cout << "Nhap vao ho  nhan vien: ";
     fflush(stdin);
-    gets(lastName);
-    strcat(fullName,lastName);
+    gets(firstName);
+    strcat(fullName, firstName);
     strcat(fullName," ");
     cout << "Nhap vao ten  nhan vien: ";
-    gets(firstName);
-    strcat(fullName,firstName);
+    gets(lastName);
+    strcat(fullName, lastName);
     int i,j,d=0;
-    int nosOfCo =dsct.size();
+    int nosOfCo = dsct.size();
     for (i = 0; i < nosOfCo; i += 1) {
     	vector<Employee*>* dsnv = &dsct[i]->dsnv;
     	int nosOfEmp = (*dsnv).size();
-               for(j=0;j<nosOfEmp;j++){
-                  char a[50];
-	      strcpy(a, (*dsnv)[j]->ho);
-                  char b[50]; 
-	      strcpy(b,(*dsnv)[j]->ten);
-                    
-	        if(strcmp(strcat(strcat(a," "),b),fullName)==0){
-	      
-                     cout 
-                          <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
-	              <<"ma nhan vien:" <<" "<< (*dsnv)[j]->manv<< endl
-                          <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho<<" "<<  (*dsnv)[j]->ten<<endl
-                          <<"Chuc vu:"      <<" "<< (*dsnv)[j]->chucvu<< endl
-                          <<"Ngay/thang/namsinh:"<<" "<< (*dsnv)[j]->sinhnhat.ngay << "/" 
-		                         << (*dsnv)[j]->sinhnhat.thang << "/"
-				 << (*dsnv)[j]->sinhnhat.nam << endl
-                          <<"Que quan:"     <<" "<< (*dsnv)[j]->que << endl
-                          <<"Dia chi :"     <<" "<< (*dsnv)[j]->diachi << endl
-                          <<"Email :"       <<" "<< (*dsnv)[j]->email <<endl
-                          <<"SDT :"         <<" "<< (*dsnv)[j]->sdt << endl
-                          <<"Ngay bat dau lam :" <<" "<< (*dsnv)[j]->ngaybd.ngay << "/" 
-		                         << (*dsnv)[j]->ngaybd.thang << "/" 
-				 << (*dsnv)[j]->ngaybd.nam <<endl;
-                      d=1;
-                   }
-                 
+    
+               for(j=0; j<nosOfEmp; j++){
+               		char a[50];
+					   strcpy(a, (*dsnv)[j]->ho);
+               		char b[50]; 
+					   strcpy(b,(*dsnv)[j]->ten);
+                    if(strcmp(strcat(strcat(a," "),b),fullName)==0){
+	       			  cout 
+                           <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
+	              	   	   <<"ma nhan vien:" <<" "<< (*dsnv)[j]->manv<< endl
+                           <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho << " " <<(*dsnv)[j]->ten <<endl
+                           <<"Chuc vu:"      <<" "<< (*dsnv)[j]->chucvu<< endl
+                           <<"Ngay/thang/namsinh:"<<" "<< (*dsnv)[j]->sinhnhat.ngay << "/" << (*dsnv)[j]->sinhnhat.thang << "/"<< (*dsnv)[j]->sinhnhat.nam << endl
+                           <<"Que quan:"     <<" "<< (*dsnv)[j]->que << endl
+                           <<"Dia chi :"     <<" "<< (*dsnv)[j]->diachi << endl
+                           <<"Email :"       <<" "<< (*dsnv)[j]->email <<endl
+                           <<"SDT :"         <<" "<< (*dsnv)[j]->sdt << endl
+                           <<"Ngay bat dau lam :" <<" "<< (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam <<endl;
+                           d=1;
+                     } 
         }
-        
+      
     }
-     if(d==0) cout<<"Khong thay ten nhan vien nao la:"<<fullName<<endl;
- }
+     if(d==0) 
+     	cout<<"Khong thay ten nhan vien nao la:"<< fullName << endl;
+				
+}
+   
+void search_stuff(vector<Company*>&dsct){
+    bool search=true;
+    int choice;
+    while(search) {
+        cout <<
+        endl << "Cac kieu tim kiem:" <<
+        endl << "1. Tim kiem theo ho." <<
+        endl << "2. Tim kiem theo ten." <<
+        endl << "3. Tim kiem theo ho & ten." <<
+        endl << "4: Thoat chuong trinh "<<endl<<
+        endl << "Nhap thao tac ban muon thuc hien: ";
+
+        cin >> choice;
+        cout << endl;
+
+        switch (choice) {
+            case 1: {
+                search_By_lastName(dsct);
+                break;
+            }
+            case 2: {
+                search_By_firstName(dsct);
+                break;
+            }
+            case 3: {
+                search_By_fullName(dsct);
+                break;
+            }
+            case 4: {
+                search = false;
+                cout << "Nhan phim bat ki de ket thuc.";
+                break;
+            }
+            
+    }
+
+   }
+  }
    
    
 
