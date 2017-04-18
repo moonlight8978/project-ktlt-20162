@@ -311,29 +311,34 @@ void search_By_lastName(vector<Company*>&dsct){
 // Tim kiem theo ho & ten
  void  search_By_fullName(vector<Company*>&dsct){
     cout<<">>>TIM KIEM THEO HO & TEN<<<"<<endl;
-    char firstName[20];
-    char lastName[10];
+    char lastName[20];
+    char firstName[10];
     char fullName[50]="";
     cout << "Nhap vao ho  nhan vien: ";
     fflush(stdin);
-    gets(firstName);
-    strcat(fullName,firstName);
-    strcat(fullName," ");
-    cout << "Nhap vao ten  nhan vien: ";
     gets(lastName);
     strcat(fullName,lastName);
+    strcat(fullName," ");
+    cout << "Nhap vao ten  nhan vien: ";
+    gets(firstName);
+    strcat(fullName,firstName);
     int i,j,d=0;
     int nosOfCo =dsct.size();
     for (i = 0; i < nosOfCo; i += 1) {
     	vector<Employee*>* dsnv = &dsct[i]->dsnv;
     	int nosOfEmp = (*dsnv).size();
                for(j=0;j<nosOfEmp;j++){
-                  if(strcmp( strcat(strcat((*dsnv)[j]->ho," "),(*dsnv)[j]->ten),fullName)==0){
+                  char a[50];
+	      strcpy(a, (*dsnv)[j]->ho);
+                  char b[50]; 
+	      strcpy(b,(*dsnv)[j]->ten);
+                    
+	        if(strcmp(strcat(strcat(a," "),b),fullName)==0){
 	      
                      cout 
                           <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
 	              <<"ma nhan vien:" <<" "<< (*dsnv)[j]->manv<< endl
-                          <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho   <<endl
+                          <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho<<" "<<  (*dsnv)[j]->ten<<endl
                           <<"Chuc vu:"      <<" "<< (*dsnv)[j]->chucvu<< endl
                           <<"Ngay/thang/namsinh:"<<" "<< (*dsnv)[j]->sinhnhat.ngay << "/" 
 		                         << (*dsnv)[j]->sinhnhat.thang << "/"
