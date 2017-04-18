@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string.h>
-#include<stdio.h>
+#include <stdio.h>
 #include <istream>
 #include <stdint.h>
 using namespace std;
@@ -210,11 +210,11 @@ void search_stuff(vector<Company*>&dsct){
 
         switch (choice) {
             case 1: {
-                search_By_firstName(dsct);
+                search_By_lastName(dsct);
                 break;
             }
             case 2: {
-                search_By_lastName(dsct);
+                search_By_firstName(dsct);
                 break;
             }
             case 3: {
@@ -231,10 +231,10 @@ void search_stuff(vector<Company*>&dsct){
 
    }
   }
-  // Tim kiem theo ho
+  // Tim kiem theo ten
   void search_By_firstName(vector<Company*>&dsct){
       char firstName[20];
-      cout << "Nhap vao ho  nhan vien: ";
+      cout << "Nhap vao ten  nhan vien: ";
       fflush(stdin);
       gets(firstName);
       int i,j,d=0;
@@ -244,7 +244,7 @@ void search_stuff(vector<Company*>&dsct){
     	vector<Employee*>* dsnv = &dsct[i]->dsnv;
     	int nosOfEmp = (*dsnv).size();
                for(j=0;j<nosOfEmp;j++){
-                  if(strcmp((*dsnv)[j]->ho,firstName)==0){
+                  if(strcmp((*dsnv)[j]->ten,firstName)==0){
 	      
                     cout 
                           <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
@@ -268,12 +268,12 @@ void search_stuff(vector<Company*>&dsct){
         }
         
     }
-       if(d==0) cout<<"Khong thay ten nhan vien nao co ho la:"<<firstName<<endl;
+       if(d==0) cout<<"Khong thay ten nhan vien nao co ten la:"<<firstName<<endl;
   }
-//Tim kiem theo ten
+//Tim kiem theo ho
 void search_By_lastName(vector<Company*>&dsct){
       char lastName[20];
-      cout << "Nhap vao ten  nhan vien: ";
+      cout << "Nhap vao ho  nhan vien: ";
       fflush(stdin);
       gets(lastName);
       int i,j,d=0;
@@ -283,7 +283,7 @@ void search_By_lastName(vector<Company*>&dsct){
     	vector<Employee*>* dsnv = &dsct[i]->dsnv;
     	int nosOfEmp = (*dsnv).size();
                for(j=0;j<nosOfEmp;j++){
-                  if(strcmp((*dsnv)[j]->ten,lastName)==0){
+                  if(strcmp((*dsnv)[j]->ho,lastName)==0){
 	      
                     cout 
                           <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
@@ -306,7 +306,7 @@ void search_By_lastName(vector<Company*>&dsct){
         }
         
     }
-       if(d==0) cout<<"Khong thay ten nhan vien nao co ten la:"<<lastName<<endl;
+       if(d==0) cout<<"Khong thay ten nhan vien nao co ho la:"<<lastName<<endl;
   }
 // Tim kiem theo ho & ten
  void  search_By_fullName(vector<Company*>&dsct){
