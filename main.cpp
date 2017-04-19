@@ -286,7 +286,7 @@ void  search_By_fullName(vector<Company*> &dsct) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
         for(j = 0; j < nosOfEmp; j ++) {
-            if ((strcmp((*dsnv)[j]->ten, firstName) == 0) ||
+            if ((strcmp((*dsnv)[j]->ten, firstName) == 0)  &&
                 (strcmp((*dsnv)[j]->ho, lastName)   == 0))
             {
                 found = true;

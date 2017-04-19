@@ -1,12 +1,12 @@
 NV1
-Tran Van
-A
+Jackie
+Chan
 BKCorporation
 Chu tich
 10/01/1980
 Ha Noi
 So 1, Ta Quang Buu
-tranvana@gmail.com
+jackie@gmail.com
 0123456789
 22/02/2016
 22/02/2016,07:49,18:00
@@ -17,32 +17,32 @@ tranvana@gmail.com
 27/02/2016,07:40,18:00
 28/02/2016,07:39,18:02
 NV2
-Nguyen Van
-B
+Tieu Long
+Nu
 BKCorporation
 Pho chu tich
 2/2/1976
 Ha Noi
 So 2, Duong Lang
-nguyenvanb@gmail.com
+tln@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:03
 23/02/2016,07:55,18:05
-24/02/2016,07:42,18:08
-25/02/2016,07:40,18:01
+24/02/2016,07:42,17:08
+25/02/2016,07:40,17:46
 26/02/2016,07:41,17:59
-27/02/2016,07:43,18:00
-28/02/2016,07:37,18:00
+27/02/2016,07:43,17:40
+28/02/2016,07:37,17:03
 NV3
-Tran Trung
-Dung
+Dieu
+Thuyen
 BKEntertainment
 Giam doc
 7/2/1979
 Nghe An
 So 3, Quang Trung
-dungtrantrung@gmail.com
+thuyendieu@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -53,14 +53,14 @@ dungtrantrung@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV4
-Tran Hai
-Hoa
+Ngo
+Quyen
 BKEntertainment
 Pho giam doc
 4/6/1972
 Ha Tinh
 So 15, Hai Ba Trung
-hoatranhai@gmail.com
+ngoquyen@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -71,14 +71,14 @@ hoatranhai@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV5
-Tran Minh
-Hoang
+Hai Ba
+Trung
 BKEntertainment
 Truong phong
 4/6/1972
 Ha Tinh
 So 19, Hai Ba Trung
-tranminhhoang@gmail.com
+trunghb@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -89,14 +89,14 @@ tranminhhoang@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV6
-Le Hien
-Luong
+Ton Ngo
+Khong
 BKEntertainment
 Pho phong
 7/9/1972
 Ha Nam
 So 22, Luong Dinh Cua
-lehienluong@gmail.com
+dongltl@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -107,14 +107,14 @@ lehienluong@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV7
-Le Trung
-Hieu
+Duong
+Tang
 BKEntertainment
 Nhan vien
 7/9/1972
 Ha Noi
 So 22, Huynh Thuc Khang
-hieult@gmail.com
+tangml@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -125,14 +125,14 @@ hieult@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV8
-Le Lan
-Anh
+La
+Bo
 BKEntertainment
 Nhan vien
 7/9/1978
 Ha Noi
 So 22, Truong Dinh
-anh11@gmail.com
+laboxdieuthuyen@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -143,14 +143,14 @@ anh11@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV9
-Pham Trung
-Thanh
+Doan Chi
+Binh
 BKMusic
 Giam doc
 7/9/1978
 Ha Noi
 So 16, Hang Buom
-thanhpt@gmail.com
+binhABCXYZcoco@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -161,14 +161,14 @@ thanhpt@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV10
-Pham Tien
-Dat
+Quach
+Tinh
 BKEntertainment
 Truong ban
 7/9/1978
 Ha Noi
 So 1234, Duong Giai Phong
-asd123@gmail.com
+tinhq@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -179,14 +179,14 @@ asd123@gmail.com
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
 NV11
-Ngo Thi
-Ha
+Quach
+Phu
 BKEntertainment
 Pho ban
 7/9/1978
 Nghe An
 So 12, Nguyen An Ninh
-ha1978@gmail.com
+quachphu@gmail.com
 1239848975
 22/02/2016
 22/02/2016,07:41,18:05
@@ -225,10 +225,100 @@ So 88, Dong Da
 saulm@gmail.com
 0988898898
 22/02/2016
-22/02/2016,07:41,18:05
+22/02/2016,07:41,17:42
 23/02/2016,07:55,18:06
-24/02/2016,07:42,18:08
-25/02/2016,07:40,18:01
+24/02/2016,07:42,17:48
+25/02/2016,07:40,16:01
 26/02/2016,07:41,17:59
 27/02/2016,07:43,18:00
 28/02/2016,07:37,18:00
+NV14
+Cau Thien
+Xich
+BKMusic
+Nhan vien
+1/7/1983
+Ha Noi
+So 88, Dong Da
+cauthienxich@gmail.com
+0988898898
+22/02/2016
+22/02/2016,07:41,17:47
+23/02/2016,07:55,18:06
+24/02/2016,07:42,17:48
+25/02/2016,07:40,17:01
+26/02/2016,07:41,17:51
+27/02/2016,07:43,18:00
+28/02/2016,07:37,18:03
+NV15
+Kieu
+Phong
+BKMusic
+Nhan vien
+1/7/1983
+Ha Noi
+So 88, Dong Da
+backieuphong@gmail.com
+0988898898
+22/02/2016
+22/02/2016,08:41,17:57
+23/02/2016,07:55,18:36
+24/02/2016,07:42,17:58
+25/02/2016,07:40,17:21
+26/02/2016,08:20,17:31
+27/02/2016,07:43,18:10
+28/02/2016,07:53,17:53
+NV16
+Mo Dung
+Phuc
+BKMusic
+Nhan vien
+1/7/1983
+Ha Noi
+So 88, Dong Da
+nammodung@gmail.com
+0988898898
+22/02/2016
+22/02/2016,08:41,16:57
+23/02/2016,07:55,18:06
+24/02/2016,07:42,17:38
+25/02/2016,07:40,17:41
+26/02/2016,08:20,17:41
+27/02/2016,07:43,18:00
+28/02/2016,07:53,17:43
+NV17
+Doan
+Du
+BKEntertainment
+Nhan vien
+18/8/1978
+Ha Noi
+So 88, Dong Da
+doandu18cm@gmail.com
+0918181818
+22/02/2016
+22/02/2016,08:41,17:57
+23/02/2016,07:55,18:36
+24/02/2016,07:42,17:58
+25/02/2016,07:40,17:21
+26/02/2016,08:20,17:31
+27/02/2016,07:43,18:10
+28/02/2016,07:53,17:53
+NV17
+Gia Cat
+Luong
+BKEntertainment
+Nhan vien
+18/8/1978
+Ha Noi
+So 88, Dong Da
+luongprodz@gmail.com
+0900391285
+22/02/2016
+22/02/2016,08:41,17:57
+23/02/2016,07:55,18:36
+24/02/2016,07:42,17:58
+25/02/2016,07:40,17:21
+26/02/2016,08:20,17:31
+27/02/2016,07:43,18:10
+28/02/2016,07:53,17:53
