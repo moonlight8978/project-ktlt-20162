@@ -270,7 +270,7 @@ void search_By_lastName(vector<Company*>&dsct){
   }
 // Tim kiem theo ho & ten
  void  search_By_fullName(vector<Company*>&dsct){
-    cout<< ">>>TIM KIEM THEO HO & TEN<<<"<< endl< endl;
+    cout<< ">>>TIM KIEM THEO HO & TEN<<<"<< endl <<endl;
     char firstName[20];
     char lastName[10];
     char fullName[50];
