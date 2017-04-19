@@ -486,9 +486,11 @@ void addEmp(vector<Company*> &dsct){
     }while(findEmployee(manv,dsct)!=NULL);
 	pushEmployee(dsct,emp);
 		cout<<"Ho:";
-        cin>>emp->ho;
+       fflush(stdin);
+	    gets(emp->ho);
 		cout<<"Ten:";
-        cin>>emp->ten;
+		fflush(stdin);
+        gets(emp->ten);
 		cout<<"Don vi:";
         cin>>emp->congty;
 		cout<<"Chuc vu: ";
