@@ -282,11 +282,11 @@ void  search_By_fullName(vector<Company*> &dsct) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
         for(j = 0; j < nosOfEmp; j ++) {
-        	char a[50];
-	    strcpy(a, (*dsnv)[j]->ho);
-            char b[50]; 
-                strcpy(b,(*dsnv)[j]->ten);
-            if(strcmp(strcat(strcat(a," "),b),fullName)==0)
+            char lastName[50];
+	        strcpy(lastName, (*dsnv)[j]->ho);
+            char firstName[50]; 
+                strcpy(firstName,(*dsnv)[j]->ten);
+            if(strcmp(strcat(strcat(lastName," "),firstName),fullName)==0)
             {
                 found = true;
                 cout
