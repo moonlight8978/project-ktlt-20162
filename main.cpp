@@ -269,15 +269,11 @@ void search_By_lastName(vector<Company*> &dsct) {
 // Tim kiem theo ho & ten
 void  search_By_fullName(vector<Company*> &dsct) {
     cout << ">>>TIM KIEM THEO HO & TEN<<<" << endl << endl;
-    char firstName[20],
-    lastName[10],
-    fullName[50];
+    char fullName[50];
 
-    cout << "Nhap vao ho  nhan vien: ";
+    cout << "Nhap vao ho & ten  nhan vien: ";
     fflush(stdin);
-    gets(lastName);
-    cout << "Nhap vao ten  nhan vien: ";
-    gets(firstName);
+    gets(fullName);
 
     int i, j;
     bool found = false;
@@ -286,8 +282,11 @@ void  search_By_fullName(vector<Company*> &dsct) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
         for(j = 0; j < nosOfEmp; j ++) {
-            if ((strcmp((*dsnv)[j]->ten, firstName) == 0)  &&
-                (strcmp((*dsnv)[j]->ho, lastName)   == 0))
+        	char a[50];
+	    strcpy(a, (*dsnv)[j]->ho);
+            char b[50]; 
+                strcpy(b,(*dsnv)[j]->ten);
+            if(strcmp(strcat(strcat(a," "),b),fullName)==0)
             {
                 found = true;
                 cout
@@ -305,7 +304,7 @@ void  search_By_fullName(vector<Company*> &dsct) {
         }
     }
     if (!found)
-        cout << "Khong thay ten nhan vien nao la:" << lastName << " " << firstName << endl;
+        cout << "Khong thay ten nhan vien nao la:" <<fullName<< endl;
 }
 
 void search_stuff(vector<Company*>&dsct) {
