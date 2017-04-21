@@ -58,14 +58,12 @@ void pushEmployee(vector<Company*> &dsct, Employee* emp) {	// dsct: danh sach co
     for (i = 0; i < nosOfCo; i += 1) {
         if(strcmp(dsct[i]->label, emp->congty) == 0) {
             found = true;   // found => them nhan vien
-            dsct[i]->dsnv.push_back(emp);
             break;
         }
     }
     if (found) {
-        return;
+        dsct[i]->dsnv.push_back(emp);
     } else {
-        // not found => tao cong ty, them nhan vien
         Company* co = new Company;
         strcpy(co->label, emp->congty);
         co->dsnv.push_back(emp);
@@ -167,25 +165,28 @@ void showBKCorp(vector<Company*> &dsct) {
     int i, j;
     int nosOfCo = dsct.size();
     for (i = 0; i < nosOfCo; i += 1) {
-        cout << "-----"
-             << dsct[i]->label
-             << "-----" << endl;
+        cout
+            << "-----**-----"
+            << dsct[i]->label
+            << "-----**-----" << endl;
 
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
         for (j = 0; j < nosOfEmp; j += 1) {
-            if ((strcmp((*dsnv)[j]->chucvu, "Truong phong") == 0) ||
-                (strcmp((*dsnv)[j]->chucvu, "Pho phong")    == 0) ||
-                (strcmp((*dsnv)[j]->chucvu, "Giam doc")     == 0) ||
-                (strcmp((*dsnv)[j]->chucvu, "Pho giam doc") == 0) ||
-                (strcmp((*dsnv)[j]->chucvu, "Pho chu tich") == 0))
-            {
+            bool matchChucVu =
+                strcmp((*dsnv)[j]->chucvu, "Truong phong") == 0 ||
+                strcmp((*dsnv)[j]->chucvu, "Pho phong")    == 0 ||
+                strcmp((*dsnv)[j]->chucvu, "Giam doc")     == 0 ||
+                strcmp((*dsnv)[j]->chucvu, "Pho giam doc") == 0 ||
+                strcmp((*dsnv)[j]->chucvu, "Pho chu tich") == 0 ||
+                strcmp((*dsnv)[j]->chucvu, "Chu tich")     == 0;
+            if (matchChucVu)
                 cout << (*dsnv)[j]->chucvu << ": "
                      << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl;
-            }
         }
-        cout << "Tong so nhan vien: "
-             << nosOfEmp << endl;
+        cout
+            << "Tong so nhan vien: " << nosOfEmp
+            << endl << endl;
     }
 }
 
@@ -194,7 +195,7 @@ void showBKCorp(vector<Company*> &dsct) {
 // Tim kiem theo ten
 void search_By_firstName(vector<Company*> &dsct) {
     char firstName[20];
-    cout << "Nhap vao ten  nhan vien: ";
+    cout << "Nhap vao ten nhan vien: ";
     fflush(stdin);
     gets(firstName);
 
@@ -204,24 +205,33 @@ void search_By_firstName(vector<Company*> &dsct) {
     for (i = 0; i < nosOfCo; i += 1) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
-        for(j = 0; j < nosOfEmp; j ++){
+        for(j = 0; j < nosOfEmp; j ++) {
             if(strcmp((*dsnv)[j]->ten, firstName) == 0) {
                 found = true;
                 cout
-                    <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
-                    <<"ma nhan vien:" <<" "<< (*dsnv)[j]->manv<< endl
-                    <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho<<" "<<  (*dsnv)[j]->ten<<endl
-                    <<"Chuc vu:"      <<" "<< (*dsnv)[j]->chucvu<< endl
-                    <<"Ngay/thang/namsinh:"<<" "<< (*dsnv)[j]->sinhnhat.ngay << "/"
-                    << (*dsnv)[j]->sinhnhat.thang << "/"
-                    << (*dsnv)[j]->sinhnhat.nam << endl
-                    <<"Que quan:"     <<" "<< (*dsnv)[j]->que << endl
-                    <<"Dia chi :"     <<" "<< (*dsnv)[j]->diachi << endl
-                    <<"Email :"       <<" "<< (*dsnv)[j]->email <<endl
-                    <<"SDT :"         <<" "<< (*dsnv)[j]->sdt << endl
-                    <<"Ngay bat dau lam :" <<" "<< (*dsnv)[j]->ngaybd.ngay << "/"
-                    << (*dsnv)[j]->ngaybd.thang << "/"
-                    << (*dsnv)[j]->ngaybd.nam <<endl;
+                    << "--KET QUA SAU 1 HOI TIM KIEM:--" << endl
+                    << "Ma nhan vien:" << " "
+                        << (*dsnv)[j]->manv << endl
+                    << "Ho va ten:" << " "
+                        << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl
+                    << "Chuc vu:" << " "
+                        << (*dsnv)[j]->chucvu<< endl
+                    << "Ngay/thang/namsinh:" << " "
+                        << (*dsnv)[j]->sinhnhat.ngay << "/"
+                        << (*dsnv)[j]->sinhnhat.thang << "/"
+                        << (*dsnv)[j]->sinhnhat.nam << endl
+                    << "Que quan:"           << " "
+                        << (*dsnv)[j]->que << endl
+                    << "Dia chi :"           << " "
+                        << (*dsnv)[j]->diachi << endl
+                    << "Email :"             << " "
+                        << (*dsnv)[j]->email << endl
+                    << "SDT :"               << " "
+                        << (*dsnv)[j]->sdt << endl
+                    << "Ngay bat dau lam :"  << " "
+                        << (*dsnv)[j]->ngaybd.ngay << "/"
+                        << (*dsnv)[j]->ngaybd.thang << "/"
+                        << (*dsnv)[j]->ngaybd.nam << endl;
             }
         }
     }
@@ -231,35 +241,44 @@ void search_By_firstName(vector<Company*> &dsct) {
 
 // Tim kiem theo ho
 void search_By_lastName(vector<Company*> &dsct) {
-    char lastName[20];
-    cout << "Nhap vao ho  nhan vien: ";
+    char lastName[30];
+    cout << "Nhap vao ho nhan vien: ";
     fflush(stdin);
     gets(lastName);
 
     int i, j;
     bool found = false;
-    int nosOfCo =dsct.size();
+    int nosOfCo = dsct.size();
     for (i = 0; i < nosOfCo; i += 1) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
-        for(j = 0; j < nosOfEmp; j ++){
+        for(j = 0; j < nosOfEmp; j ++) {
             if (strcmp((*dsnv)[j]->ho, lastName) == 0) {
                 found = true;
                 cout
-                    <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
-                    <<"ma nhan vien:" <<" "<< (*dsnv)[j]->manv<< endl
-                    <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho<<" "<<  (*dsnv)[j]->ten<<endl
-                    <<"Chuc vu:"      <<" "<< (*dsnv)[j]->chucvu<< endl
-                    <<"Ngay/thang/namsinh:"<<" "<< (*dsnv)[j]->sinhnhat.ngay << "/"
-                    << (*dsnv)[j]->sinhnhat.thang << "/"
-                    << (*dsnv)[j]->sinhnhat.nam << endl
-                    <<"Que quan:"     <<" "<< (*dsnv)[j]->que << endl
-                    <<"Dia chi :"     <<" "<< (*dsnv)[j]->diachi << endl
-                    <<"Email :"       <<" "<< (*dsnv)[j]->email <<endl
-                    <<"SDT :"         <<" "<< (*dsnv)[j]->sdt << endl
-                    <<"Ngay bat dau lam :" <<" "<< (*dsnv)[j]->ngaybd.ngay << "/"
-                    << (*dsnv)[j]->ngaybd.thang << "/"
-                    << (*dsnv)[j]->ngaybd.nam <<endl;
+                    << "--KET QUA SAU 1 HOI TIM KIEM:--" << endl
+                    << "Ma nhan vien:" << " "
+                        << (*dsnv)[j]->manv << endl
+                    << "Ho va ten:" << " "
+                        << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl
+                    << "Chuc vu:" << " "
+                        << (*dsnv)[j]->chucvu<< endl
+                    << "Ngay/thang/namsinh:" << " "
+                        << (*dsnv)[j]->sinhnhat.ngay << "/"
+                        << (*dsnv)[j]->sinhnhat.thang << "/"
+                        << (*dsnv)[j]->sinhnhat.nam << endl
+                    << "Que quan:"           << " "
+                        << (*dsnv)[j]->que << endl
+                    << "Dia chi :"           << " "
+                        << (*dsnv)[j]->diachi << endl
+                    << "Email :"             << " "
+                        << (*dsnv)[j]->email << endl
+                    << "SDT :"               << " "
+                        << (*dsnv)[j]->sdt << endl
+                    << "Ngay bat dau lam :"  << " "
+                        << (*dsnv)[j]->ngaybd.ngay << "/"
+                        << (*dsnv)[j]->ngaybd.thang << "/"
+                        << (*dsnv)[j]->ngaybd.nam << endl;
             }
         }
     }
@@ -269,10 +288,10 @@ void search_By_lastName(vector<Company*> &dsct) {
 
 // Tim kiem theo ho & ten
 void  search_By_fullName(vector<Company*> &dsct) {
-    cout << ">>>TIM KIEM THEO HO & TEN<<<" << endl << endl;
-    char* input_fullName = new char[50];
+    cout << ">>>TIM KIEM THEO HO & TEN<<< " << endl << endl;
+    char input_fullName[40];
 
-    cout << "Nhap vao ho & ten  nhan vien: ";
+    cout << "Nhap vao ho & ten nhan vien: ";
     fflush(stdin);
     gets(input_fullName);
 
@@ -282,73 +301,81 @@ void  search_By_fullName(vector<Company*> &dsct) {
     for (i = 0; i < nosOfCo; i += 1) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
+        char* fullName;
         for (j = 0; j < nosOfEmp; j ++) {
-            char* fullName = new char[50];
+            fullName = new char[40];
 	        strcpy(fullName, (*dsnv)[j]->ho);
             strcat(fullName, " ");
             strcat(fullName, (*dsnv)[j]->ten);
             if (strcmp(fullName, input_fullName) == 0) {
                 found = true;
                 cout
-                    <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
-                    <<"ma nhan vien:" <<" "<< (*dsnv)[j]->manv<< endl
-                    <<"Ho va ten:"    <<" "<< (*dsnv)[j]->ho << " " <<(*dsnv)[j]->ten <<endl
-                    <<"Chuc vu:"      <<" "<< (*dsnv)[j]->chucvu<< endl
-                    <<"Ngay/thang/namsinh:"<<" "<< (*dsnv)[j]->sinhnhat.ngay << "/" << (*dsnv)[j]->sinhnhat.thang << "/"<< (*dsnv)[j]->sinhnhat.nam << endl
-                    <<"Que quan:"     <<" "<< (*dsnv)[j]->que << endl
-                    <<"Dia chi :"     <<" "<< (*dsnv)[j]->diachi << endl
-                    <<"Email :"       <<" "<< (*dsnv)[j]->email <<endl
-                    <<"SDT :"         <<" "<< (*dsnv)[j]->sdt << endl
-                    <<"Ngay bat dau lam :" <<" "<< (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam <<endl;
+                    << "--KET QUA SAU 1 HOI TIM KIEM:--" << endl
+                    << "Ma nhan vien:" << " "
+                        << (*dsnv)[j]->manv << endl
+                    << "Ho va ten:" << " "
+                        << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl
+                    << "Chuc vu:" << " "
+                        << (*dsnv)[j]->chucvu<< endl
+                    << "Ngay/thang/namsinh:" << " "
+                        << (*dsnv)[j]->sinhnhat.ngay << "/"
+                        << (*dsnv)[j]->sinhnhat.thang << "/"
+                        << (*dsnv)[j]->sinhnhat.nam << endl
+                    << "Que quan:"           << " "
+                        << (*dsnv)[j]->que << endl
+                    << "Dia chi :"           << " "
+                        << (*dsnv)[j]->diachi << endl
+                    << "Email :"             << " "
+                        << (*dsnv)[j]->email << endl
+                    << "SDT :"               << " "
+                        << (*dsnv)[j]->sdt << endl
+                    << "Ngay bat dau lam :"  << " "
+                        << (*dsnv)[j]->ngaybd.ngay << "/"
+                        << (*dsnv)[j]->ngaybd.thang << "/"
+                        << (*dsnv)[j]->ngaybd.nam << endl;
             }
-            free(fullName);
         }
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao la:" << input_fullName << endl;
-    free(input_fullName);
 }
 
-void search_stuff(vector<Company*>&dsct) {
-    bool search=true;
+void search_stuff(vector<Company*> &dsct) {
+    bool running = true;
     int choice;
-    while (search) {
+    while (running) {
         cout <<
         endl << "Cac kieu tim kiem:" <<
         endl << "1. Tim kiem theo ho." <<
         endl << "2. Tim kiem theo ten." <<
         endl << "3. Tim kiem theo ho & ten." <<
-        endl << "4: Thoat chuong trinh "<<endl<<
+        endl << "4: Thoat chuong trinh." << endl <<
         endl << "Nhap thao tac ban muon thuc hien: ";
 
         cin >> choice;
         cout << endl;
 
         switch (choice) {
-            case 1: {
-                search_By_lastName(dsct);
-                break;
-            }
-            case 2: {
-                search_By_firstName(dsct);
-                break;
-            }
-            case 3: {
-                search_By_fullName(dsct);
-                break;
-            }
-            case 4: {
-                search = false;
-                cout << "Nhan phim bat ki de ket thuc.";
-                break;
-            }
-
+        case 1: {
+            search_By_lastName(dsct);
+            break;
+        }
+        case 2: {
+            search_By_firstName(dsct);
+            break;
+        }
+        case 3: {
+            search_By_fullName(dsct);
+            break;
+        }
+        case 4: {
+            running = false;
+            cout << "Nhan phim bat ki de ket thuc.";
+            break;
+        }
+        }
     }
-
-   }
-  }
-
-
+}
 
 //  check t7, CN
 bool isWeekends(Date date) {
@@ -371,18 +398,22 @@ bool isHoliday(Date date) {
         case 1: {
             if (date.ngay == 1)
                 return true;
+            return false;
         }
         case 4: {
             if (date.ngay == 30)
                 return true;
+            return false;
         }
         case 5: {
             if (date.ngay == 1)
                 return true;
+            return false;
         }
         case 9: {
             if (date.ngay == 2)
                 return true;
+            return false;
         }
         default: {
             return false;
@@ -390,42 +421,72 @@ bool isHoliday(Date date) {
     }
 }
 
+
+bool dateMatchInput(Date date, int input_month, int input_year) {
+    if (date.thang == input_month && date.nam == input_year)
+        return true;
+    return false;
+}
+
 //  cau 3
 void showInfoEmp(vector<Company*> &dsct) {
-    char manv[10];
+    char* input_manv = new char[10];
+    int input_month, input_year;
     int i = 0;
+
     cout << "Nhap vao ma nhan vien: ";
-    cin >> manv;
-    Employee* emp = findEmployee(manv, dsct);
+    cin >> input_manv;
+    cout << "Nhap vao thang can kiem tra: ";
+    cin >> input_month;
+    cout << "Nhap vao nam can kiem tra: ";
+    cin >> input_year;
+
+    Employee* emp = findEmployee(input_manv, dsct);
+    // khong tim thay => end
     if (emp == NULL) {
-        cout << "Khong co nhan vien ma so " << manv << endl;
+        cout << "Khong co nhan vien ma so " << input_manv << endl;
         return;
     }
-    int giohut = 0,
-        phuthut = 0;
+    // tim thay
+    int giohut = 0;
+    int phuthut;
+    Date* date;
     for (i = 0; i < 7; i += 1) {
-        Date date = emp->ngaylv[i];
-        if (isWeekends(date) || isHoliday(date))
+        date = &emp->ngaylv[i];
+        bool invalid =
+            !dateMatchInput(*date, input_month, input_year) ||
+            isWeekends(*date) ||
+            isHoliday(*date);
+        if (invalid)
             continue;
+
         int gioden = emp->gioden[i].gio,
             phutden = emp->gioden[i].phut,
             giove = emp->giove[i].gio,
             phutve = emp->giove[i].phut;
-        if (gioden >= 8) {
-            giohut += gioden - 8;
-            phuthut += phutden;
+        if (gioden >= 7) {
+            phuthut = phutden - 30;
+            giohut += gioden - 7;
+            if (phuthut > 0)
+                giohut += 1;
         }
-        if (giove < 18) {
+        if (giove <= 17) {
+            phuthut = 30 - phutve;
             giohut += 17 - giove;
-            phuthut += 60 - phutve;
+            if (phuthut > 0)
+                giohut += 1;
         }
     }
-    giohut += (phuthut) / 60;
-    phuthut = phuthut % 60;
-    cout << giohut << ":" << phuthut << endl;
-    if (phuthut >= 30)
-        giohut += 1;
-    cout << "Lam tron: " << giohut << " gio" << endl;
+
+    cout
+        << endl
+        << ">>>>> Ket qua tra cuu <<<<<"
+        << endl;
+    printf(
+        "Trong thang %d nam %d, %s lam hut: %d gio",
+        input_month, input_year, input_manv, giohut
+    );
+    cout << endl;
 }
 
 //  cau 4
@@ -445,20 +506,14 @@ void print_donvi(vector<Company*> &dsct)
             for(j = 0; j < nosOfEmp; j++)
             {
                 cout << (*dsnv)[j]->manv << endl
-                     << (*dsnv)[j]->ho << " "<<  (*dsnv)[j]->ten <<endl
+                     << (*dsnv)[j]->ho << " " <<  (*dsnv)[j]->ten << endl
                      << (*dsnv)[j]->chucvu<< endl
                      << (*dsnv)[j]->sinhnhat.ngay << "/" << (*dsnv)[j]->sinhnhat.thang << "/" << (*dsnv)[j]->sinhnhat.nam << endl
                      << (*dsnv)[j]->que << endl
                      << (*dsnv)[j]->diachi << endl
-                     << (*dsnv)[j]->email <<endl
+                     << (*dsnv)[j]->email << endl
                      << (*dsnv)[j]->sdt << endl
-                     << (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam <<endl;
-                for(int k=0;k<7;k++)
-                {
-                    cout << (*dsnv)[j]->ngaylv[k].ngay << "/" << (*dsnv)[j]->ngaylv[k].thang << "/" << (*dsnv)[j]->ngaylv[k].nam << ", "
-                         << (*dsnv)[j]->gioden[k].gio << ":" << (*dsnv)[j]->gioden[k].phut << ", "
-                         << (*dsnv)[j]->giove[k].gio << ":" << (*dsnv)[j]->giove[k].phut << endl ;
-                }
+                     << (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam << endl;
                 cout << endl;
             }
         }
@@ -468,64 +523,64 @@ void print_donvi(vector<Company*> &dsct)
 
 void addEmp(vector<Company*> &dsct){
 	Employee* emp = new Employee;
-    cout<<endl<<"*********Them nhan vien moi ahihi !*************"<<endl;
+    cout<< endl<< "*********Them nhan vien moi ahihi !*************" << endl;
     char manv[10];
-    cout << "Xin moi nhap thong tin cua nhan vien moi"<<endl;
+    cout << "Xin moi nhap thong tin cua nhan vien moi" << endl;
 	do{
-       cout<<"Xin moi nhap ma nhan vien:";
+       cout<< "Xin moi nhap ma nhan vien:";
        cin>>manv;
        if(findEmployee(manv,dsct)!=NULL){
-           cout<<"Ma nhan vien nay da TON TAI vui long thu lai"<<endl<<endl;
+           cout<< "Ma nhan vien nay da TON TAI vui long thu lai" << endl<< endl;
        }
     }while(findEmployee(manv,dsct)!=NULL);
 	pushEmployee(dsct,emp);
-		cout<<"Ho:";
+		cout<< "Ho:";
        fflush(stdin);
 	    gets(emp->ho);
-		cout<<"Ten:";
+		cout<< "Ten:";
 		fflush(stdin);
         gets(emp->ten);
-		cout<<"Don vi:";
+		cout<< "Don vi:";
         cin>>emp->congty;
-		cout<<"Chuc vu: ";
+		cout<< "Chuc vu: ";
         cin>>emp->chucvu;
-        cout<<"Ngay thang nam sinh:  "<<endl;
-		cout<<"Ngay:";
+        cout<< "Ngay thang nam sinh:  " << endl;
+		cout<< "Ngay:";
         cin>>emp->sinhnhat.ngay;
-        cout<<"Thang:";
+        cout<< "Thang:";
         cin>>emp->sinhnhat.thang;
-        cout<<"Nam:";
+        cout<< "Nam:";
         cin>>emp->sinhnhat.nam;
-		cout<<"Que Quan: ";
+		cout<< "Que Quan: ";
 		cin>>emp->que;
-		cout<<"Dia chi: ";
+		cout<< "Dia chi: ";
         cin>>emp->ten;
-		cout<<"Email: ";
+		cout<< "Email: ";
         cin>>emp->email;
-		cout<<"So dien thoai: ";
+		cout<< "So dien thoai: ";
         cin>>emp->sdt;
-	    cout<<"---------------------------------------------"<<endl;
-	    cout<<"Nhan vien duoi day da duoc Them vao he thong!!!"<<endl;
-	    cout<<"Ten: "<<emp->ten<<endl;
-	    cout<<"Ho: "<<emp->ho<<endl;
-	    cout<<"Cong ty: "<<emp->congty<<endl;
-	    cout<<"Chuc vu: "<<emp->chucvu<<endl;
-	    cout<<"Ngay sinh:"<<emp->sinhnhat.ngay<<"/"<<emp->sinhnhat.thang<<"/"<<emp->sinhnhat.nam<<endl;
-	    cout<<"Que Quan: "<<emp->que<<endl;
-	    cout<<"Dia chi: "<<emp->diachi<<endl;
-	    cout<<"Email: "<<emp->email<<endl;
-	    cout<<"So dt: "<<emp->sdt<<endl;
+	    cout<< "---------------------------------------------" << endl;
+	    cout<< "Nhan vien duoi day da duoc Them vao he thong!!!" << endl;
+	    cout<< "Ten: " <<emp->ten<< endl;
+	    cout<< "Ho: " <<emp->ho<< endl;
+	    cout<< "Cong ty: " <<emp->congty<< endl;
+	    cout<< "Chuc vu: " <<emp->chucvu<< endl;
+	    cout<< "Ngay sinh:" <<emp->sinhnhat.ngay<< "/" <<emp->sinhnhat.thang<< "/" <<emp->sinhnhat.nam<< endl;
+	    cout<< "Que Quan: " <<emp->que<< endl;
+	    cout<< "Dia chi: " <<emp->diachi<< endl;
+	    cout<< "Email: " <<emp->email<< endl;
+	    cout<< "So dt: " <<emp->sdt<< endl;
 	}
 
 //cau 6
 void updateEmp(vector<Company*> &dsct){
-    cout<<endl<<"*********UPDATE*************"<<endl;
+    cout<< endl<< "*********UPDATE*************" << endl;
     char manv[4];
     do{
-       cout<<"Xin moi nhap ma nhan vien:"<<endl;
+       cout<< "Xin moi nhap ma nhan vien:" << endl;
        cin>>manv;
        if(findEmployee(manv,dsct)==NULL){
-           cout<<"Sorry!!! Nhan vien nay khong ton tai. Vui long thu lai"<<endl<<endl;
+           cout<< "Sorry!!! Nhan vien nay khong ton tai. Vui long thu lai" << endl<< endl;
        }
     }while(findEmployee(manv,dsct)==NULL);
 
@@ -545,66 +600,66 @@ void updateEmp(vector<Company*> &dsct){
         endl << "7. Dia chi." <<
         endl << "8. Email." <<
         endl << "9. So dien thoai." <<
-        endl << "10.Thoat. "<<
+        endl << "10.Thoat. " <<
         endl << "Nhap thao tac ban muon thuc hien: ";
         cin>>choice;
         if(choice==1){
-           cout<<"Ho: ";
+           cout<< "Ho: ";
            cin>>emp->ho;
         }
         else if(choice==2){
-           cout<<"Ten: ";
+           cout<< "Ten: ";
            cin>>emp->ten;
         }
         else if(choice==3){
-           cout<<"Don vi: ";
+           cout<< "Don vi: ";
            cin>>emp->congty;
         }
         else if(choice==4){
-           cout<<"Ten: ";
+           cout<< "Ten: ";
            cin>>emp->chucvu;
         }
         else if(choice==5){
-           cout<<"Ngay:"<<"  ";
+           cout<< "Ngay:" << "  ";
            cin>>emp->sinhnhat.ngay;
-           cout<<"Thang:"<<"  ";
+           cout<< "Thang:" << "  ";
            cin>>emp->sinhnhat.thang;
-           cout<<"Nam:"<<"  ";
+           cout<< "Nam:" << "  ";
            cin>>emp->sinhnhat.nam;
         }
         else if(choice==6){
-           cout<<"Que Quan: ";
+           cout<< "Que Quan: ";
            cin>>emp->que;
         }
         else if(choice==7){
-           cout<<"Dia chi: ";
+           cout<< "Dia chi: ";
            cin>>emp->ten;
         }
         else if(choice==8){
-           cout<<"Email: ";
+           cout<< "Email: ";
            cin>>emp->email;
         }
         else if(choice==9){
-           cout<<"So dien thoai: ";
+           cout<< "So dien thoai: ";
            cin>>emp->sdt;
         }
         else if(choice==10){
            break;
         }
-        cout<<"Ban co muon update them khong?(Y/N)=";
+        cout<< "Ban co muon update them khong?(Y/N)=";
         cin>>redo;
     }while (redo=='y'||redo=='Y');
-    cout<<"---------------------------------------------"<<endl;
-    cout<<"Nhan vien duoi day da duoc update vao he thong!!!"<<endl;
-    cout<<"Ten: "<<emp->ten<<endl;
-    cout<<"Ho: "<<emp->ho<<endl;
-    cout<<"Cong ty: "<<emp->congty<<endl;
-    cout<<"Chuc vu: "<<emp->chucvu<<endl;
-    cout<<"Ngay sinh:"<<emp->sinhnhat.ngay<<"/"<<emp->sinhnhat.thang<<"/"<<emp->sinhnhat.nam<<endl;
-    cout<<"Que Quan: "<<emp->que<<endl;
-    cout<<"Dia chi: "<<emp->diachi<<endl;
-    cout<<"Email: "<<emp->email<<endl;
-    cout<<"So dt: "<<emp->sdt<<endl;
+    cout<< "---------------------------------------------" << endl;
+    cout<< "Nhan vien duoi day da duoc update vao he thong!!!" << endl;
+    cout<< "Ten: " <<emp->ten<< endl;
+    cout<< "Ho: " <<emp->ho<< endl;
+    cout<< "Cong ty: " <<emp->congty<< endl;
+    cout<< "Chuc vu: " <<emp->chucvu<< endl;
+    cout<< "Ngay sinh:" <<emp->sinhnhat.ngay<< "/" <<emp->sinhnhat.thang<< "/" <<emp->sinhnhat.nam<< endl;
+    cout<< "Que Quan: " <<emp->que<< endl;
+    cout<< "Dia chi: " <<emp->diachi<< endl;
+    cout<< "Email: " <<emp->email<< endl;
+    cout<< "So dt: " <<emp->sdt<< endl;
 }
 int main() {
     cout << "Chuong trinh quan li nhan vien:" << endl;
@@ -618,6 +673,8 @@ int main() {
     read(file, dsct);
     cout << "Done." << endl;
 
+    cout << dsct.size() << endl;
+
     while(running) {
         cout <<
         endl << "Hay lua chon cac thao tac:" <<
@@ -627,7 +684,7 @@ int main() {
         endl << "4. Hien thi thong tin cua mot don vi." <<
         endl << "5. Them nhan vien moi." <<
         endl << "6. Cap nhat thong tin nhan vien." <<
-        endl << "7: Thoat chuong trinh "<<endl<<
+        endl << "7: Thoat chuong trinh " << endl<<
         endl << "Nhap thao tac ban muon thuc hien: ";
 
         cin >> choice;
