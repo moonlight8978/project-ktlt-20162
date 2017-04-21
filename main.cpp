@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <istream>
 #include <stdint.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -269,11 +270,11 @@ void search_By_lastName(vector<Company*> &dsct) {
 // Tim kiem theo ho & ten
 void  search_By_fullName(vector<Company*> &dsct) {
     cout << ">>>TIM KIEM THEO HO & TEN<<<" << endl << endl;
-    char fullName[50];
+    char* input_fullName = new char[50];
 
     cout << "Nhap vao ho & ten  nhan vien: ";
     fflush(stdin);
-    gets(fullName);
+    gets(input_fullName);
 
     int i, j;
     bool found = false;
@@ -281,13 +282,12 @@ void  search_By_fullName(vector<Company*> &dsct) {
     for (i = 0; i < nosOfCo; i += 1) {
         vector<Employee*>* dsnv = &dsct[i]->dsnv;
         int nosOfEmp = (*dsnv).size();
-        for(j = 0; j < nosOfEmp; j ++) {
-            char lastName[50];
-	        strcpy(lastName, (*dsnv)[j]->ho);
-            char firstName[50]; 
-                strcpy(firstName,(*dsnv)[j]->ten);
-            if(strcmp(strcat(strcat(lastName," "),firstName),fullName)==0)
-            {
+        for (j = 0; j < nosOfEmp; j ++) {
+            char* fullName = new char[50];
+	        strcpy(fullName, (*dsnv)[j]->ho);
+            strcat(fullName, " ");
+            strcat(fullName, (*dsnv)[j]->ten);
+            if (strcmp(fullName, input_fullName) == 0) {
                 found = true;
                 cout
                     <<"--KET QUA SAU 1 HOI TIM KIEM:--"<<endl
@@ -301,10 +301,12 @@ void  search_By_fullName(vector<Company*> &dsct) {
                     <<"SDT :"         <<" "<< (*dsnv)[j]->sdt << endl
                     <<"Ngay bat dau lam :" <<" "<< (*dsnv)[j]->ngaybd.ngay << "/" << (*dsnv)[j]->ngaybd.thang << "/" << (*dsnv)[j]->ngaybd.nam <<endl;
             }
+            free(fullName);
         }
     }
     if (!found)
-        cout << "Khong thay ten nhan vien nao la:" <<fullName<< endl;
+        cout << "Khong thay ten nhan vien nao la:" << input_fullName << endl;
+    free(input_fullName);
 }
 
 void search_stuff(vector<Company*>&dsct) {
