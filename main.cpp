@@ -635,7 +635,7 @@ void updateEmp(vector<Company*> &dsct) {
         endl << "7. Dia chi." <<
         endl << "8. Email." <<
         endl << "9. So dien thoai." <<
-        endl << "10.Thoat. " <<
+        endl << "10.Thoat." <<
         endl << "Nhap thao tac ban muon thuc hien: ";
         cin>>choice;
         if (choice == 1) {
