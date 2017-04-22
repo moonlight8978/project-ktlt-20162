@@ -608,21 +608,21 @@ void addEmp(vector<Company*> &dsct){
 	}
 
 //cau 6
-void updateEmp(vector<Company*> &dsct){
+void updateEmp(vector<Company*> &dsct) {
     cout<< endl<< "*********UPDATE*************" << endl;
     char manv[4];
-    do{
+    do {
        cout<< "Xin moi nhap ma nhan vien:" << endl;
        cin>>manv;
-       if(findEmployee(manv,dsct)==NULL){
+       if(findEmployee(manv,dsct) == NULL) {
            cout<< "Sorry!!! Nhan vien nay khong ton tai. Vui long thu lai" << endl<< endl;
        }
-    }while(findEmployee(manv,dsct)==NULL);
+    } while(findEmployee(manv,dsct) == NULL);
 
-    Employee *emp=findEmployee(manv,dsct);
+    Employee *emp = findEmployee(manv,dsct);
     int choice;
     char redo;//co hieu
-    do{
+    do {
         cout << endl << endl;
         cout<<
         endl << "Xin moi nhap 1 so ung voi du lieu can update:" <<
@@ -638,23 +638,24 @@ void updateEmp(vector<Company*> &dsct){
         endl << "10.Thoat. " <<
         endl << "Nhap thao tac ban muon thuc hien: ";
         cin>>choice;
-        if(choice==1){
+        if (choice == 1) {
            cout<< "Ho: ";
-           cin>>emp->ho;
+           fflush(stdin);
+           gets (emp->ho);
         }
-        else if(choice==2){
+        else if (choice == 2 ) {
            cout<< "Ten: ";
            cin>>emp->ten;
         }
-        else if(choice==3){
+        else if (choice == 3) {
            cout<< "Don vi: ";
            cin>>emp->congty;
         }
-        else if(choice==4){
+        else if (choice == 4) {
            cout<< "Ten: ";
            cin>>emp->chucvu;
         }
-        else if(choice==5){
+        else if (choice == 5) {
            cout<< "Ngay:" << "  ";
            cin>>emp->sinhnhat.ngay;
            cout<< "Thang:" << "  ";
@@ -662,28 +663,28 @@ void updateEmp(vector<Company*> &dsct){
            cout<< "Nam:" << "  ";
            cin>>emp->sinhnhat.nam;
         }
-        else if(choice==6){
+        else if (choice == 6) {
            cout<< "Que Quan: ";
            cin>>emp->que;
         }
-        else if(choice==7){
+        else if (choice == 7) {
            cout<< "Dia chi: ";
            cin>>emp->ten;
         }
-        else if(choice==8){
+        else if (choice == 8) {
            cout<< "Email: ";
            cin>>emp->email;
         }
-        else if(choice==9){
+        else if (choice == 9) {
            cout<< "So dien thoai: ";
            cin>>emp->sdt;
         }
-        else if(choice==10){
+        else if (choice == 10) {
            break;
         }
         cout<< "Ban co muon update them khong?(Y/N)=";
         cin>>redo;
-    }while (redo=='y'||redo=='Y');
+    } while (redo == 'y' || redo == 'Y');
     cout<< "---------------------------------------------" << endl;
     cout<< "Nhan vien duoi day da duoc update vao he thong!!!" << endl;
     cout<< "Ten: " <<emp->ten<< endl;
