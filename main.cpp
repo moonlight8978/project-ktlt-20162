@@ -585,7 +585,7 @@ void addEmp(vector<Company*> &dsct){
 		cout<< "Que Quan:";fflush(stdin);
 		gets(emp->que);
 		cout<< "Dia chi: ";fflush(stdin);
-        gets(emp->ten);
+        gets(emp->diachi);
 		cout<< "Email: ";
         cin>>emp->email;
 		cout<< "So dien thoai: ";
