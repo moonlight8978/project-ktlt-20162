@@ -552,28 +552,29 @@ void print_donvi(vector<Company*> &dsct)
 //cau 5
 
 void addEmp(vector<Company*> &dsct){
+	
 	Employee* emp = new Employee;
     cout<< endl<< "*********Them nhan vien moi ahihi !*************" << endl;
     char manv[10];
     cout << "Xin moi nhap thong tin cua nhan vien moi" << endl;
 	do{
-       cout<< "Xin moi nhap ma nhan vien:";
+       cout<< "Xin moi nhap ma nhan vien: ";
        cin>>manv;
        if(findEmployee(manv,dsct)!=NULL){
            cout<< "Ma nhan vien nay da TON TAI vui long thu lai" << endl<< endl;
        }
     }while(findEmployee(manv,dsct)!=NULL);
-	pushEmployee(dsct,emp);
+
 		cout<< "Ho:";
         fflush(stdin);
 	    gets(emp->ho);
 		cout<< "Ten:";
 		fflush(stdin);
         gets(emp->ten);
-		cout<< "Don vi:";
-        cin>>emp->congty;
-		cout<< "Chuc vu: ";
-        cin>>emp->chucvu;
+		cout<< "Don vi:";fflush(stdin);
+        gets(emp->congty);
+		cout<< "Chuc vu: ";fflush(stdin);
+        gets(emp->chucvu);
         cout<< "Ngay thang nam sinh:  " << endl;
 		cout<< "Ngay:";
         cin>>emp->sinhnhat.ngay;
@@ -581,14 +582,16 @@ void addEmp(vector<Company*> &dsct){
         cin>>emp->sinhnhat.thang;
         cout<< "Nam:";
         cin>>emp->sinhnhat.nam;
-		cout<< "Que Quan: ";
-		cin>>emp->que;
-		cout<< "Dia chi: ";
-        cin>>emp->ten;
+		cout<< "Que Quan:";fflush(stdin);
+		gets(emp->que);
+		cout<< "Dia chi: ";fflush(stdin);
+        gets(emp->ten);
 		cout<< "Email: ";
         cin>>emp->email;
 		cout<< "So dien thoai: ";
         cin>>emp->sdt;
+        clock_t start = clock();
+        pushEmployee(dsct,emp);
 	    cout<< "---------------------------------------------" << endl;
 	    cout<< "Nhan vien duoi day da duoc Them vao he thong!!!" << endl;
 	    cout<< "Ten: " <<emp->ten<< endl;
@@ -600,6 +603,8 @@ void addEmp(vector<Company*> &dsct){
 	    cout<< "Dia chi: " <<emp->diachi<< endl;
 	    cout<< "Email: " <<emp->email<< endl;
 	    cout<< "So dt: " <<emp->sdt<< endl;
+	    cout<<endl
+		<< "Hoan thanh trong " << calTime(start) << " giay" << endl;
 	}
 
 //cau 6
