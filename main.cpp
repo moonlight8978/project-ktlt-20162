@@ -5,6 +5,7 @@
 #include <istream>
 #include <stdint.h>
 #include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -160,8 +161,14 @@ Employee* findEmployee(char *manv, vector<Company*> &dsct){
     return NULL;
 }
 
+
+double calTime(clock_t start) {
+    return (double)(clock() - start) / CLOCKS_PER_SEC;
+} 
+
 // cau 1
 void showBKCorp(vector<Company*> &dsct) {
+    clock_t start = clock();
     int i, j;
     int nosOfCo = dsct.size();
     for (i = 0; i < nosOfCo; i += 1) {
@@ -186,8 +193,11 @@ void showBKCorp(vector<Company*> &dsct) {
         }
         cout
             << "Tong so nhan vien: " << nosOfEmp
-            << endl << endl;
+            << endl;
     }
+    cout 
+        << endl 
+        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
 // cau2
@@ -199,6 +209,7 @@ void search_By_firstName(vector<Company*> &dsct) {
     fflush(stdin);
     gets(firstName);
 
+    clock_t start = clock();
     int i, j;
     bool found = false;
     int nosOfCo = dsct.size();
@@ -237,6 +248,9 @@ void search_By_firstName(vector<Company*> &dsct) {
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao co ten la: " << firstName << endl;
+    cout 
+        << endl 
+        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
 // Tim kiem theo ho
@@ -246,6 +260,7 @@ void search_By_lastName(vector<Company*> &dsct) {
     fflush(stdin);
     gets(lastName);
 
+    clock_t start = clock();
     int i, j;
     bool found = false;
     int nosOfCo = dsct.size();
@@ -284,6 +299,9 @@ void search_By_lastName(vector<Company*> &dsct) {
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao co ho la: " << lastName << endl;
+    cout 
+        << endl 
+        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
 // Tim kiem theo ho & ten
@@ -295,6 +313,7 @@ void  search_By_fullName(vector<Company*> &dsct) {
     fflush(stdin);
     gets(input_fullName);
 
+    clock_t start = clock();
     int i, j;
     bool found = false;
     int nosOfCo = dsct.size();
@@ -304,7 +323,7 @@ void  search_By_fullName(vector<Company*> &dsct) {
         char* fullName;
         for (j = 0; j < nosOfEmp; j ++) {
             fullName = new char[40];
-	        strcpy(fullName, (*dsnv)[j]->ho);
+            strcpy(fullName, (*dsnv)[j]->ho);
             strcat(fullName, " ");
             strcat(fullName, (*dsnv)[j]->ten);
             if (strcmp(fullName, input_fullName) == 0) {
@@ -338,6 +357,9 @@ void  search_By_fullName(vector<Company*> &dsct) {
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao la:" << input_fullName << endl;
+    cout 
+        << endl 
+        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
 void search_stuff(vector<Company*> &dsct) {
@@ -441,6 +463,7 @@ void showInfoEmp(vector<Company*> &dsct) {
     cout << "Nhap vao nam can kiem tra: ";
     cin >> input_year;
 
+    clock_t start = clock();
     Employee* emp = findEmployee(input_manv, dsct);
     // khong tim thay => end
     if (emp == NULL) {
@@ -483,10 +506,12 @@ void showInfoEmp(vector<Company*> &dsct) {
         << ">>>>> Ket qua tra cuu <<<<<"
         << endl;
     printf(
-        "Trong thang %d nam %d, %s lam hut: %d gio",
+        "Trong thang %d nam %d, %s lam hut: %d gio \n",
         input_month, input_year, input_manv, giohut
     );
-    cout << endl;
+    cout 
+        << endl 
+        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
 //  cau 4
@@ -495,6 +520,8 @@ void print_donvi(vector<Company*> &dsct)
     char donvi[100];
     cout << "nhap ten don vi:" ;
     cin >> donvi;
+
+    clock_t start = clock();
     int i, j;
     int nosOfCo = dsct.size();
     for (i = 0; i < nosOfCo; i++)
@@ -518,6 +545,9 @@ void print_donvi(vector<Company*> &dsct)
             }
         }
     }
+    cout 
+        << endl 
+        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 //cau 5
 
@@ -535,7 +565,7 @@ void addEmp(vector<Company*> &dsct){
     }while(findEmployee(manv,dsct)!=NULL);
 	pushEmployee(dsct,emp);
 		cout<< "Ho:";
-       fflush(stdin);
+        fflush(stdin);
 	    gets(emp->ho);
 		cout<< "Ten:";
 		fflush(stdin);
@@ -661,6 +691,7 @@ void updateEmp(vector<Company*> &dsct){
     cout<< "Email: " <<emp->email<< endl;
     cout<< "So dt: " <<emp->sdt<< endl;
 }
+
 int main() {
     cout << "Chuong trinh quan li nhan vien:" << endl;
     cout << "Dang doc file input.txt... ";
