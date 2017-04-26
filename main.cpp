@@ -164,7 +164,29 @@ Employee* findEmployee(char *manv, vector<Company*> &dsct){
 
 double calTime(clock_t start) {
     return (double)(clock() - start) / CLOCKS_PER_SEC;
-} 
+}
+
+// cac ham kiem tra input
+
+bool isInputEmpty(char* input) {
+    if (input[0] == '\0')
+        return true;
+    return false;
+}
+
+bool isNameInvalid(char* input) {
+    if ('A' <= input[0] && input[0] <= 'Z' ||
+        'a' <= input[0] && input[0] <= 'z')
+        return false;
+    return true;
+}
+
+bool isManvInvalid(char* input) {
+    if (input[0] == 'N' && input[1] == 'V' &&
+        input[2] >= '1' && input[2] <= '9')
+        return false;
+    return true;
+}
 
 // cau 1
 void showBKCorp(vector<Company*> &dsct) {
@@ -188,15 +210,16 @@ void showBKCorp(vector<Company*> &dsct) {
                 strcmp((*dsnv)[j]->chucvu, "Pho chu tich") == 0 ||
                 strcmp((*dsnv)[j]->chucvu, "Chu tich")     == 0;
             if (matchChucVu)
-                cout << (*dsnv)[j]->chucvu << ": "
-                     << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl;
+                cout
+                    << (*dsnv)[j]->chucvu << ": "
+                    << (*dsnv)[j]->ho << " " << (*dsnv)[j]->ten << endl;
         }
         cout
             << "Tong so nhan vien: " << nosOfEmp
             << endl;
     }
-    cout 
-        << endl 
+    cout
+        << endl
         << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
@@ -206,8 +229,14 @@ void showBKCorp(vector<Company*> &dsct) {
 void search_By_firstName(vector<Company*> &dsct) {
     char firstName[20];
     cout << "Nhap vao ten nhan vien: ";
-    fflush(stdin);
-    gets(firstName);
+    bool error = true;
+    while (error) {
+        fflush(stdin);
+        gets(firstName);
+        error = (!isInputEmpty(firstName) && !isNameInvalid(firstName)) ? false : true;
+        if (error)
+            cout << "Ten nhap vao khong hop le! Hay nhap lai: ";
+    }
 
     clock_t start = clock();
     int i, j;
@@ -248,8 +277,8 @@ void search_By_firstName(vector<Company*> &dsct) {
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao co ten la: " << firstName << endl;
-    cout 
-        << endl 
+    cout
+        << endl
         << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
@@ -257,8 +286,14 @@ void search_By_firstName(vector<Company*> &dsct) {
 void search_By_lastName(vector<Company*> &dsct) {
     char lastName[30];
     cout << "Nhap vao ho nhan vien: ";
-    fflush(stdin);
-    gets(lastName);
+    bool error = true;
+    while (error) {
+        fflush(stdin);
+        gets(lastName);
+        error = (!isInputEmpty(lastName) && !isNameInvalid(lastName)) ? false : true;
+        if (error)
+            cout << "Ho nhap vao khong hop le! Hay nhap lai: ";
+    }
 
     clock_t start = clock();
     int i, j;
@@ -299,8 +334,8 @@ void search_By_lastName(vector<Company*> &dsct) {
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao co ho la: " << lastName << endl;
-    cout 
-        << endl 
+    cout
+        << endl
         << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
@@ -308,10 +343,15 @@ void search_By_lastName(vector<Company*> &dsct) {
 void  search_By_fullName(vector<Company*> &dsct) {
     cout << ">>>TIM KIEM THEO HO & TEN<<< " << endl << endl;
     char input_fullName[40];
-
     cout << "Nhap vao ho & ten nhan vien: ";
-    fflush(stdin);
-    gets(input_fullName);
+    bool error = true;
+    while (error) {
+        fflush(stdin);
+        gets(input_fullName);
+        error = (!isInputEmpty(input_fullName) && !isNameInvalid(input_fullName)) ? false : true;
+        if (error)
+            cout << "Ho ten nhap vao khong hop le! Hay nhap lai: ";
+    }
 
     clock_t start = clock();
     int i, j;
@@ -357,21 +397,22 @@ void  search_By_fullName(vector<Company*> &dsct) {
     }
     if (!found)
         cout << "Khong thay ten nhan vien nao la:" << input_fullName << endl;
-    cout 
-        << endl 
+    cout
+        << endl
         << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 
 void search_stuff(vector<Company*> &dsct) {
+    cout << "~~~*** TIM KIEM NHAN VIEN ***~~~";
     bool running = true;
     int choice;
     while (running) {
         cout <<
         endl << "Cac kieu tim kiem:" <<
-        endl << "1. Tim kiem theo ho." <<
-        endl << "2. Tim kiem theo ten." <<
-        endl << "3. Tim kiem theo ho & ten." <<
-        endl << "4: Thoat chuong trinh." << endl <<
+        endl << "1. Tim kiem theo ho" <<
+        endl << "2. Tim kiem theo ten" <<
+        endl << "3. Tim kiem theo ho & ten" <<
+        endl << "4: Khong tim kiem nua" << endl <<
         endl << "Nhap thao tac ban muon thuc hien: ";
 
         cin >> choice;
@@ -380,21 +421,20 @@ void search_stuff(vector<Company*> &dsct) {
         switch (choice) {
         case 1: {
             search_By_lastName(dsct);
-            break;
-        }
+            break; }
         case 2: {
             search_By_firstName(dsct);
-            break;
-        }
+            break; }
         case 3: {
             search_By_fullName(dsct);
-            break;
-        }
+            break; }
         case 4: {
             running = false;
-            cout << "Nhan phim bat ki de ket thuc.";
-            break;
-        }
+            cout << endl;
+            break; }
+        default: {
+            cout << "Khong co chuc nang nay!" << endl;
+            break; }
         }
     }
 }
@@ -420,26 +460,21 @@ bool isHoliday(Date date) {
         case 1: {
             if (date.ngay == 1)
                 return true;
-            return false;
-        }
+            return false; }
         case 4: {
             if (date.ngay == 30)
                 return true;
-            return false;
-        }
+            return false; }
         case 5: {
             if (date.ngay == 1)
                 return true;
-            return false;
-        }
+            return false; }
         case 9: {
             if (date.ngay == 2)
                 return true;
-            return false;
-        }
+            return false; }
         default: {
-            return false;
-        }
+            return false; }
     }
 }
 
@@ -450,68 +485,105 @@ bool dateMatchInput(Date date, int input_month, int input_year) {
     return false;
 }
 
+int calDeficientTime(Time& gioden, Time& giove) {
+    int giohut = 0,
+        phuthut;
+    if (gioden.gio >= 7) {
+        phuthut = gioden.phut - 30;
+        giohut += gioden.gio - 7;
+        if (phuthut > 0)
+            giohut += 1;
+    }
+    if (giove.gio <= 17) {
+        phuthut = 30 - giove.phut;
+        giohut += 17 - giove.gio;
+        if (phuthut > 0)
+            giohut += 1;
+    }
+    return giohut;
+}
+
 //  cau 3
-void showInfoEmp(vector<Company*> &dsct) {
-    char* input_manv = new char[10];
-    int input_month, input_year;
-    int i = 0;
+void showInfoEmp(vector<Company*>& dsct) {
+    cout << "~~~*** KIEM TRA THONG TIN NHAN VIEN ***~~~" << endl;
+    bool running = true;
+    char choice;
+    while (running) {
+        char* input_manv = new char[10];
+        int input_month, input_year;
+        int i = 0;
+        bool error;
 
-    cout << "Nhap vao ma nhan vien: ";
-    cin >> input_manv;
-    cout << "Nhap vao thang can kiem tra: ";
-    cin >> input_month;
-    cout << "Nhap vao nam can kiem tra: ";
-    cin >> input_year;
-
-    clock_t start = clock();
-    Employee* emp = findEmployee(input_manv, dsct);
-    // khong tim thay => end
-    if (emp == NULL) {
-        cout << "Khong co nhan vien ma so " << input_manv << endl;
-        return;
-    }
-    // tim thay
-    int giohut = 0;
-    int phuthut;
-    Date* date;
-    for (i = 0; i < 7; i += 1) {
-        date = &emp->ngaylv[i];
-        bool invalid =
-            !dateMatchInput(*date, input_month, input_year) ||
-            isWeekends(*date) ||
-            isHoliday(*date);
-        if (invalid)
-            continue;
-
-        int gioden = emp->gioden[i].gio,
-            phutden = emp->gioden[i].phut,
-            giove = emp->giove[i].gio,
-            phutve = emp->giove[i].phut;
-        if (gioden >= 7) {
-            phuthut = phutden - 30;
-            giohut += gioden - 7;
-            if (phuthut > 0)
-                giohut += 1;
+        cout << "Nhap vao ma nhan vien (MaNV co dang NV*): ";
+        error = true;
+        while (error) {
+            cin >> input_manv;
+            error = (!isInputEmpty(input_manv) && !isManvInvalid(input_manv)) ? false : true;
+            if (error)
+                cout << "Ten nhap vao khong hop le! Hay nhap lai: ";
         }
-        if (giove <= 17) {
-            phuthut = 30 - phutve;
-            giohut += 17 - giove;
-            if (phuthut > 0)
-                giohut += 1;
+        cout << "Nhap vao thang can kiem tra: ";
+        error = true;
+        while (error) {
+            cin >> input_month;
+            if (!cin) {
+                cin.clear();
+                cin.ignore();
+                cout << "Khong hop le. Nhap lai: ";
+            } else
+                error = false;
         }
-    }
+        cout << "Nhap vao nam can kiem tra: ";
+        error = true;
+        while (error) {
+            cin >> input_year;
+            if (!cin) {
+                cin.clear();
+                cin.ignore();
+                cout << "Khong hop le. Nhap lai: ";
+            } else
+                error = false;
+        }
 
-    cout
-        << endl
-        << ">>>>> Ket qua tra cuu <<<<<"
-        << endl;
-    printf(
-        "Trong thang %d nam %d, %s lam hut: %d gio \n",
-        input_month, input_year, input_manv, giohut
-    );
-    cout 
-        << endl 
-        << "Hoan thanh trong " << calTime(start) << " giay" << endl;
+        clock_t start = clock();
+        Employee* emp = findEmployee(input_manv, dsct);
+        // khong tim thay => end
+        if (emp == NULL) {
+            cout << "Khong co nhan vien ma so " << input_manv << endl;
+            return;
+        }
+        // tim thay
+        int giohut = 0;
+        Date* date;
+        for (i = 0; i < 7; i += 1) {
+            date = &emp->ngaylv[i];
+            bool invalid =
+                !dateMatchInput(*date, input_month, input_year) ||
+                isWeekends(*date) ||
+                isHoliday(*date);
+            if (invalid)
+                continue;
+
+            giohut += calDeficientTime(emp->gioden[i], emp->giove[i]);
+        }
+
+        cout
+            << endl
+            << ">>>>> Ket qua tra cuu <<<<<"
+            << endl;
+        printf(
+            "Trong thang %d nam %d, %s lam hut: %d gio \n",
+            input_month, input_year, input_manv, giohut
+        );
+        cout
+            << endl
+            << "Hoan thanh trong " << calTime(start) << " giay" << endl << endl
+            << "Ban muon kiem tra nhan vien khac khong? (Y/N): ";
+        while (choice != 'Y' && choice != 'y' && choice != 'n' && choice != 'N')
+            cin >> choice;
+        if (choice == 'n' || choice == 'N')
+            running = false;
+    }
 }
 
 //  cau 4
@@ -545,14 +617,14 @@ void print_donvi(vector<Company*> &dsct)
             }
         }
     }
-    cout 
-        << endl 
+    cout
+        << endl
         << "Hoan thanh trong " << calTime(start) << " giay" << endl;
 }
 //cau 5
 
 void addEmp(vector<Company*> &dsct){
-	
+
 	Employee* emp = new Employee;
     cout<< endl<< "*********Them nhan vien moi ahihi !*************" << endl;
     char manv[10];
@@ -682,14 +754,14 @@ void updateEmp(vector<Company*> &dsct) {
         else if (choice == 10) {
            break;
         }
-        cout<< "Ban co muon update them khong?(Y/N)=";
-        cin>>redo;
+        cout << "Ban co muon update them khong?(Y/N)=";
+        cin >> redo;
     } while (redo == 'y' || redo == 'Y');
     cout<< "---------------------------------------------" << endl;
     cout<< "Nhan vien duoi day da duoc update vao he thong!!!" << endl;
-    cout<< "Ten: " <<emp->ten<< endl;
-    cout<< "Ho: " <<emp->ho<< endl;
-    cout<< "Cong ty: " <<emp->congty<< endl;
+    cout<< "Ten: " << emp->ten << endl;
+    cout<< "Ho: " << emp->ho << endl;
+    cout<< "Cong ty: " << emp->congty << endl;
     cout<< "Chuc vu: " <<emp->chucvu<< endl;
     cout<< "Ngay sinh:" <<emp->sinhnhat.ngay<< "/" <<emp->sinhnhat.thang<< "/" <<emp->sinhnhat.nam<< endl;
     cout<< "Que Quan: " <<emp->que<< endl;
@@ -699,66 +771,58 @@ void updateEmp(vector<Company*> &dsct) {
 }
 
 int main() {
-    cout << "Chuong trinh quan li nhan vien:" << endl;
+    cout << "~~~***  CHUONG TRINH QUAN LI NHAN VIEN  ***~~~" << endl << endl;
+
     cout << "Dang doc file input.txt... ";
     const char *filePath = "input.txt";
     FILE *file;
     file = fopen(filePath, "r");
-    bool running=true;
     vector<Company*> dsct;
-    int choice;
     read(file, dsct);
     cout << "Done." << endl;
 
-    cout << dsct.size() << endl;
-
-    while(running) {
+    int choice;
+    bool running = true;
+    while (running) {
         cout <<
         endl << "Hay lua chon cac thao tac:" <<
-        endl << "1. Hien thi cac thong tin co ban ve BKCorporation." <<
-        endl << "2. Tim kiem nhan vien bang ho ten." <<
-        endl << "3. Hien thi tinh trang lam viec cua nhan vien." <<
-        endl << "4. Hien thi thong tin cua mot don vi." <<
-        endl << "5. Them nhan vien moi." <<
-        endl << "6. Cap nhat thong tin nhan vien." <<
-        endl << "7: Thoat chuong trinh " << endl<<
+        endl << "1. Hien thi cac thong tin co ban ve BKCorporation" <<
+        endl << "2. Tim kiem nhan vien bang ho ten" <<
+        endl << "3. Hien thi tinh trang lam viec cua nhan vien" <<
+        endl << "4. Hien thi thong tin cua mot don vi" <<
+        endl << "5. Them nhan vien moi" <<
+        endl << "6. Cap nhat thong tin nhan vien" <<
+        endl << "7: Thoat chuong trinh" << endl <<
         endl << "Nhap thao tac ban muon thuc hien: ";
 
-        cin >> choice;
+        cin  >> choice;
         cout << endl;
 
         switch (choice) {
-            case 1: {
-                showBKCorp(dsct);
-                break;
-            }
-            case 2: {
-                search_stuff(dsct);
-                break;
-            }
-            case 3: {
-                showInfoEmp(dsct);
-                break;
-            }
-            case 4: {
-                print_donvi(dsct);
-                break;
-            }
-            case 5: {
-                addEmp(dsct);
-			    break;
-            }
-            case 6: {
-                updateEmp(dsct);
-                break;
-            }
-            case 7: {
-                running = false;
-                cout << "Nhan phim bat ki de ket thuc.";
-                break;
-            }
+        case 1: {
+            showBKCorp(dsct);
+            break; }
+        case 2: {
+            search_stuff(dsct);
+            break; }
+        case 3: {
+            showInfoEmp(dsct);
+            break; }
+        case 4: {
+            print_donvi(dsct);
+            break; }
+        case 5: {
+            addEmp(dsct);
+		    break; }
+        case 6: {
+            updateEmp(dsct);
+            break; }
+        case 7: {
+            running = false;
+            cout << "Nhan phim bat ki de ket thuc.";
+            break; }
+        }
     }
 
-  }
-  return 0;
+    return 0;
 }
