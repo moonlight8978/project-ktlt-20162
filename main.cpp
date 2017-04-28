@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 using namespace std;
 
 struct Date {
@@ -186,6 +187,55 @@ bool isManvInvalid(char* input) {
         input[2] >= '1' && input[2] <= '9')
         return false;
     return true;
+}
+
+bool isDayInvalid(int input) {
+    if (input >= 1 && input <= 31)
+        return false;
+    return true;
+}
+
+bool isMonthInvalid(int input) {
+    if (input >= 1 && input <= 12)
+        return false;
+    return true;
+}
+
+bool isYearInvalid(int input) {
+    if(input >= 1900 && input <=2017)
+        return false;
+    return true;
+}
+
+bool isCharacter(const char Character)
+{
+	return ( (Character >= 'a' && Character <= 'z') || (Character >= 'A' && Character <= 'Z'));
+}
+
+bool isValidEmailAddress(const char * email)
+{
+	if(!email)
+		return 0;
+	if(!isCharacter(email[0]))
+		return 0;
+	int AtOffset = -1;
+	int DotOffset = -1;
+	unsigned int Length = strlen(email);
+
+	for(unsigned int i = 0; i < Length; i++)
+	{
+		if(email[i] == '@')
+			AtOffset = (int)i;
+		else if(email[i] == '.')
+			DotOffset = (int)i;
+	}
+
+	if(AtOffset == -1 || DotOffset == -1)
+		return 0;
+	if(AtOffset > DotOffset)
+		return 0;
+	return !(DotOffset >= ((int)Length-1));
+
 }
 
 // cau 1
@@ -683,9 +733,16 @@ void addEmp(vector<Company*> &dsct){
 void updateEmp(vector<Company*> &dsct) {
     cout<< endl<< "*********UPDATE*************" << endl;
     char manv[4];
+    bool error;
     do {
        cout<< "Xin moi nhap ma nhan vien:" << endl;
-       cin>>manv;
+       error = true;
+       while (error) {
+            cin >> manv;
+            error = (!isInputEmpty(manv) && !isManvInvalid(manv)) ? false : true;
+            if (error)
+                cout << "Ten nhap vao khong hop le! Moi nhap lai: ";
+       }
        if(findEmployee(manv,dsct) == NULL) {
            cout<< "Sorry!!! Nhan vien nay khong ton tai. Vui long thu lai" << endl<< endl;
        }
@@ -713,9 +770,9 @@ void updateEmp(vector<Company*> &dsct) {
         if (choice == 1) {
            cout<< "Ho: ";
            fflush(stdin);
-           gets (emp->ho);
+           cin.getline (emp->ho,30);
         }
-        else if (choice == 2 ) {
+        else if (choice == 2) {
            cout<< "Ten: ";
            cin>>emp->ten;
         }
@@ -729,11 +786,39 @@ void updateEmp(vector<Company*> &dsct) {
         }
         else if (choice == 5) {
            cout<< "Ngay:" << "  ";
-           cin>>emp->sinhnhat.ngay;
+           error = true;
+           while (error) {
+            cin>>emp->sinhnhat.ngay;
+            if (!cin || isDayInvalid(emp->sinhnhat.ngay)) {
+                cin.clear();
+                cin.ignore();
+                cout << "Khong hop le. Moi nhap lai - Ngay: ";
+            } else
+                error = false;
+          }
+
            cout<< "Thang:" << "  ";
-           cin>>emp->sinhnhat.thang;
+           error = true;
+           while (error) {
+            cin>>emp->sinhnhat.thang;
+            if (!cin || isMonthInvalid(emp->sinhnhat.thang)) {
+                cin.clear();
+                cin.ignore();
+                cout << "Khong hop le. Moi nhap lai - Thang: ";
+            } else
+                error = false;
+          }
            cout<< "Nam:" << "  ";
-           cin>>emp->sinhnhat.nam;
+           error = true;
+           while (error) {
+            cin>>emp->sinhnhat.nam;
+            if (!cin || isYearInvalid(emp->sinhnhat.nam)) {
+                cin.clear();
+                cin.ignore();
+                cout << "Khong hop le. Moi nhap lai - Nam: ";
+            } else
+                error = false;
+          }
         }
         else if (choice == 6) {
            cout<< "Que Quan: ";
@@ -745,12 +830,22 @@ void updateEmp(vector<Company*> &dsct) {
         }
         else if (choice == 8) {
            cout<< "Email: ";
-           cin>>emp->email;
+           error = true;
+           while (error) {
+               cin>>emp->email;
+               if (!isValidEmailAddress (emp->email)) {
+                   cout<< "Email khong hop le. Vui long thu lai: ";
+               }
+               else {
+                   error = false;
+               }
+           }
         }
         else if (choice == 9) {
            cout<< "So dien thoai: ";
-           cin>>emp->sdt;
+           cin>> emp->sdt;
         }
+
         else if (choice == 10) {
            break;
         }
