@@ -21,21 +21,25 @@ struct Time {
     int phut;
 };
 
+struct NgayLamViec {
+    Date ngay;
+    Time gioden;
+    Time giove;
+};
+
 struct Employee {
-    char manv[10];	    //  ma nhan vien
+    char manv[10];  //  ma nhan vien
     char ho[30];
     char ten[10];
     char congty[30];
     char chucvu[30];
     Date sinhnhat;
-    char que[20];	    // que quan
+    char que[20];   // que quan
     char diachi[50];
     char email[50];
-    char sdt[50];	    // so dien thoai
-    Date ngaybd;		// ngay bat dau
-    Date ngaylv[7];		// ngay lam viec
-    Time gioden[7];		// gio den^'
-    Time giove[7];		// gio ve^`
+    char sdt[50];   // so dien thoai
+    Date ngaybd;    // ngay bat dau
+    vector<NgayLamViec> ngaylv;   // ngay lam viec
 };
 
 struct Company {
@@ -108,12 +112,14 @@ void fixNewLine(Employee* emp) {
 // Luu thong tin nhan vien vao struct Employee
 // Push vao Cong ty
 void read(FILE* file, vector<Company*> &dsct) {
+    char manvBackup[100];
+    fgets(manvBackup, 100, file);
     while (!feof(file)) {
         Employee* emp = new Employee;
         char fgetsResult[100];
-        int i;
+        bool toNextEmp = false;
         // Tien hanh doc 1 nhan vien
-        fgets(emp->manv, 100, file);
+        strcpy(emp->manv, manvBackup);
         fgets(emp->ho, 100, file);
         fgets(emp->ten, 100, file);
         fgets(emp->congty, 100, file);
@@ -132,14 +138,23 @@ void read(FILE* file, vector<Company*> &dsct) {
             fgetsResult, "%d/%d/%d\n",
             &emp->ngaybd.ngay, &emp->ngaybd.thang, &emp->ngaybd.nam
         );
-        for (i = 0; i < 7; i += 1) {
+        while (!toNextEmp) {
+            if (feof(file))
+                break;
             fgets(fgetsResult, 100, file);
-            sscanf(
-                fgetsResult, "%d/%d/%d,%d:%d,%d:%d\n",
-                &emp->ngaylv[i].ngay, &emp->ngaylv[i].thang, &emp->ngaylv[i].nam,
-                &emp->gioden[i].gio, &emp->gioden[i].phut,
-                &emp->giove[i].gio, &emp->giove[i].phut
-            );
+            if (fgetsResult[0] == 'N') {
+                strcpy(manvBackup, fgetsResult);
+                toNextEmp = true;
+            } else {
+                NgayLamViec ngaylv;
+                sscanf(
+                    fgetsResult, "%d/%d/%d,%d:%d,%d:%d\n",
+                    &ngaylv.ngay.ngay, &ngaylv.ngay.thang, &ngaylv.ngay.nam,
+                    &ngaylv.gioden.gio, &ngaylv.gioden.phut,
+                    &ngaylv.giove.gio, &ngaylv.giove.phut
+                );
+                emp->ngaylv.push_back(ngaylv);
+            }
         }
         fixNewLine(emp);
         // Doc xong 1 nhan vien => Push
@@ -607,8 +622,9 @@ void showInfoEmp(vector<Company*>& dsct) {
         } else {
 	        int giohut = 0;
 	        Date* date;
-	        for (i = 0; i < 7; i += 1) {
-	            date = &emp->ngaylv[i];
+            int nosOfDay = emp->ngaylv.size();
+	        for (i = 0; i < nosOfDay; i += 1) {
+	            date = &emp->ngaylv[i].ngay;
 	            bool invalid =
 	                !dateMatchInput(*date, input_month, input_year) ||
 	                isWeekends(*date) ||
@@ -616,7 +632,7 @@ void showInfoEmp(vector<Company*>& dsct) {
 	            if (invalid)
 	                continue;
 
-	            giohut += calDeficientTime(emp->gioden[i], emp->giove[i]);
+	            giohut += calDeficientTime(emp->ngaylv[i].gioden, emp->ngaylv[i].giove);
 	        }
 
 	        cout
