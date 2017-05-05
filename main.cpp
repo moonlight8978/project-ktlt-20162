@@ -1012,7 +1012,7 @@ void updateEmp(vector<Company*> &dsct) {
     	}
     	else if (choice == 7) {
     		cout << "Dia chi: ";
-    		cin >> emp->ten;
+    		cin >> emp->diachi;
     	}
     	else if (choice == 8) {
     		cout << "Email: ";
