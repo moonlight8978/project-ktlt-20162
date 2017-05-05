@@ -722,22 +722,22 @@ char flag;
 	do{
 	Employee* emp = new Employee;
     cout<< endl<< "*********Them nhan vien moi ahihi !*************" << endl;
-    char manv[10];
     cout << "Xin moi nhap thong tin cua nhan vien moi" << endl;
     bool error=true;
 	do{
        cout<< "Xin moi nhap ma nhan vien  (VD:NV01): ";
        error = true;
        while (error) {
-            cin >> manv;
-            error = (!isInputEmpty(manv) && !isManvInvalid(manv)) ? false : true;
+       		fflush(stdin);
+            gets(emp->manv);
+            error = (!isInputEmpty(emp->manv) && !isManvInvalid(emp->manv)) ? false : true;
             if (error)
                 cout << "Ma nhan vien khong hop le! nhap lai: ";
        }
-       if(findEmployee(manv,dsct)!=NULL){
+       if(findEmployee(emp->manv,dsct)!=NULL){
            cout<< "Ma nhan vien nay da TON TAI vui long thu lai" << endl<< endl;
        																		}
-    	}while(findEmployee(manv,dsct)!=NULL);
+    	}while(findEmployee(emp->manv,dsct)!=NULL);
 		
 		cout<< "Ho:";fflush(stdin);
 		error=true;
