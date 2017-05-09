@@ -33,3 +33,5 @@
 
 # Personal test file
 backup.cpp
+/archived/
+*.backup
