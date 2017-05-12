@@ -283,8 +283,10 @@ void print_emp(Employee* emp) {
             << emp->manv << endl
         << "Ho va ten: "
             << emp->ho << " " << emp->ten << endl
+        << "Don vi: "
+            << emp->congty << endl
         << "Chuc vu: "
-            << emp->chucvu<< endl
+            << emp->chucvu << endl
         << "Sinh nhat: "
             << emp->sinhnhat.ngay << "/"
             << emp->sinhnhat.thang << "/"
@@ -566,6 +568,7 @@ void showInfoEmp(vector<Company*>& dsct) {
         int input_month, input_year;
         int i = 0;
         bool error;
+        bool workedInThisMonth = false;
 
         cout << "Nhap vao ma nhan vien (MaNV co dang NV*): ";
         error = true;
@@ -615,17 +618,26 @@ void showInfoEmp(vector<Company*>& dsct) {
 	                isHoliday(*date);
 	            if (invalid)
 	                continue;
-
-	            giohut += calDeficientTime(emp->ngaylv[i].gioden, emp->ngaylv[i].giove);
+                else {
+                    workedInThisMonth = true;
+                    giohut += calDeficientTime(emp->ngaylv[i].gioden, emp->ngaylv[i].giove);
+                }
 	        }
 
 	        cout
 	            << endl
 	            << ">>>>> Ket qua tra cuu <<<<<" << endl;
-	        printf(
-	            "Trong thang %d nam %d, %s (%s %s) lam hut: %d gio \n",
-	            input_month, input_year, input_manv, emp->ho, emp->ten, giohut
-	        );
+            if (workedInThisMonth) {
+    	        printf(
+    	            "Trong thang %d nam %d, %s (%s %s) lam hut: %d gio \n",
+    	            input_month, input_year, input_manv, emp->ho, emp->ten, giohut
+    	        );
+            } else {
+                printf(
+                    "Nhan vien %s %s khong di lam trong thang %d nam %d",
+                    emp->ho, emp->ten, input_month, input_year
+                );
+            }
 	    }
 
         cout
@@ -886,9 +898,8 @@ void updateEmp(vector<Company*> &dsct) {
 		}
 		start = clock();
 		Employee* empNeedToFind = findEmployee(manv, dsct);
-		if (empNeedToFind == NULL) {
+		if (empNeedToFind == NULL)
 			cout << "Sorry!!! Nhan vien nay khong ton tai. Vui long thu lai" << endl << endl;
-		}
 		totalTime = calTime(start);
 	} while (findEmployee(manv, dsct) == NULL);
 
@@ -930,7 +941,8 @@ void updateEmp(vector<Company*> &dsct) {
     	}
     	else if (choice == 4) {
     		cout << "Ten: ";
-    		cin >> emp->chucvu;
+            fflush(stdin);
+    		gets(emp->chucvu);
     	}
     	else if (choice == 5) {
     		cout << "Ngay: " << "  ";
@@ -970,23 +982,23 @@ void updateEmp(vector<Company*> &dsct) {
     	}
     	else if (choice == 6) {
     		cout << "Que Quan: ";
-    		cin >> emp->que;
+            fflush(stdin);
+    		gets(emp->que);
     	}
     	else if (choice == 7) {
     		cout << "Dia chi: ";
-    		cin >> emp->diachi;
+            fflush(stdin);
+    		gets(emp->diachi);
     	}
     	else if (choice == 8) {
     		cout << "Email: ";
     		error = true;
     		while (error) {
     			cin >> emp->email;
-    			if (!isValidEmailAddress (emp->email)) {
+    			if (!isValidEmailAddress (emp->email))
     				cout << "Email khong hop le. Vui long thu lai: ";
-    			}
-    			else {
+    			else
     				error = false;
-    			}
     		}
     	}
     	else if (choice == 9) {
