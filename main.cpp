@@ -886,6 +886,7 @@ void updateEmp(vector<Company*> &dsct) {
 	bool error;
 	clock_t start;
 	double totalTime;
+    Employee* emp = NULL;
 
 	do {
 		cout << "Xin moi nhap ma nhan vien: " << endl;
@@ -897,29 +898,28 @@ void updateEmp(vector<Company*> &dsct) {
 				cout << "Ten nhap vao khong hop le! Moi nhap lai: ";
 		}
 		start = clock();
-		Employee* empNeedToFind = findEmployee(manv, dsct);
-		if (empNeedToFind == NULL)
+		emp = findEmployee(manv, dsct);
+		if (emp == NULL)
 			cout << "Sorry!!! Nhan vien nay khong ton tai. Vui long thu lai" << endl << endl;
 		totalTime = calTime(start);
-	} while (findEmployee(manv, dsct) == NULL);
+	} while (emp == NULL);
 
-	Employee *emp = findEmployee(manv, dsct);
 	int choice;
     char choice_input[10];
     char redo;	//co hieu
     do {
     	cout << 
     	endl << "Xin moi nhap 1 so ung voi du lieu can update:" <<
-    	endl << "1. Ho." <<
-    	endl << "2. Ten." <<
-    	endl << "3. Don vi." <<
-    	endl << "4. Chuc vu." <<
-    	endl << "5. Ngay sinh." <<
-    	endl << "6. Que quan." <<
-    	endl << "7. Dia chi." <<
-    	endl << "8. Email." <<
-    	endl << "9. So dien thoai." <<
-    	endl << "10.Thoat." <<
+    	endl << "1.  Ho." <<
+    	endl << "2.  Ten." <<
+    	endl << "3.  Don vi." <<
+    	endl << "4.  Chuc vu." <<
+    	endl << "5.  Ngay sinh." <<
+    	endl << "6.  Que quan." <<
+    	endl << "7.  Dia chi." <<
+    	endl << "8.  Email." <<
+    	endl << "9.  So dien thoai." <<
+    	endl << "10. Thoat." <<
     	endl << "Nhap thao tac ban muon thuc hien: ";
 
         choose_feature(choice_input);
@@ -936,8 +936,30 @@ void updateEmp(vector<Company*> &dsct) {
     		cin >> emp->ten;
     	}
     	else if (choice == 3) {
+            int i, j;
+            int nosOfCo = dsct.size();
+            for (i = 0; i < nosOfCo; i++) {
+                if(strcmp(emp->congty, dsct[i]->label) == 0)
+                    break;
+            }
+            vector<Employee*>* dsnv = &dsct[i]->dsnv;
+            int nosOfEmp = (*dsnv).size();
+            for (j = 0; j < nosOfEmp; j += 1) {
+                if (strcmp(emp->manv, (*dsnv)[j]->manv))
+                    break;
+            }
+
+            char congtyBackup[50];
+            strcpy(congtyBackup, emp->congty);
+
     		cout << "Don vi: ";
     		cin >> emp->congty;
+
+            if (strcmp(congtyBackup, emp->congty) != 0) {
+                (*dsnv).erase((*dsnv).begin() + j - 1);
+                pushEmployee(dsct, emp);
+            }
+                
     	}
     	else if (choice == 4) {
     		cout << "Ten: ";
